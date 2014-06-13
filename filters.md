@@ -32,6 +32,12 @@ function autoFilter(thread) {
   - Star
   - Label ~/Announcements
 
+```
+  if (subject.match(/\[timely\]/i) !== null) {
+    msg.star();
+    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+  }
+```
 
 # WHEREABOUTS
 
@@ -41,6 +47,16 @@ function autoFilter(thread) {
   - Never Important
   - Unless subject contains "OOO", "offline", or "unavailable" archive
 
+```
+  if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
+    msg.star();
+    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+
+    if (subject.match(/(ooo|offline|unavailable)/i) === null) {
+      thread.moveToArchive();
+    }
+  }
+```
 
 # GOOGLE CALENDAR
 
