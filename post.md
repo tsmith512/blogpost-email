@@ -15,7 +15,7 @@ I came to Gmail from Exchange; Filters have always seemed less powerful than Rul
 My gripes with Gmail Filters:
 
 - Search is limited, seemingly, to word and number characters; special characters
-  have no effect in searches, so I can't isolate **[**category**]** strings we
+  have no effect in searches, so I can't isolate "**\[**category**\]**" strings we
   use in subject lines.
 - Complex groups of boolean logic have a tendency to produce imprecise results
   and there's no way to have "additional criteria" (even if multiple fields are
