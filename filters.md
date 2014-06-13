@@ -1,4 +1,4 @@
-# TEMPLATE CODE
+# The Setup
 
 ``` js
 function autoFilter(thread) {
@@ -6,6 +6,11 @@ function autoFilter(thread) {
   var subject = thread.getFirstMessageSubject();
   var to = [msg.getTo(), msg.getCc()].join();
   var from = msg.getFrom();
+
+  // If this thread already has labels on it, it has already been processed.
+  // Don't process the thread again; it's either new enough to show up in the
+  // cron job, or a new message came in on this thread.
+  if ( thread.getLabels().length ) return;
 
   // Match and apply labels and actions as necessary
   // https://developers.google.com/apps-script/reference/gmail/gmail-message
@@ -84,7 +89,7 @@ function autoFilter(thread) {
 - Subject contains `[Everyone] [HR]` case-insensitive
   - Label ~/Announcements
 
-- Subject matches `\[Drupal(Camp|Con)[\w\s\d]*?\]` or contains [Events]
+- Subject matches `\[Drupal(Camp|Con).*?\]` or contains [Events]
   - Label ~/Events
 
 
