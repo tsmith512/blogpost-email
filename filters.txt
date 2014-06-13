@@ -1,258 +1,360 @@
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402586486840</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='subject' value='WFH -OOO -offline'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
 
-<?xml version='1.0' encoding='UTF-8'?><feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
-	<title>Mail Filters</title>
-	<id>tag:mail.google.com,2008:filters:1402586486840,1402587994395,1402587994703,1402587995881,1402587996152,1402588010561,1402588025231,1402588164000,1402588164017,1402588164243,1402588295906,1402588350688,1402590141137,1402600141919,1402600414335,1402602420189,1402610522815,1402610590036,1402632089597,1402634104848,1402670532670,1402670564114,1402674674479</id>
-	<updated>2014-06-13T18:42:05Z</updated>
-	<author>
-		<name>Taylor Smith</name>
-		<email>taylor@fourkitchens.com</email>
-	</author>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402586486840</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='subject' value='WFH -OOO -offline'/>
-		<apps:property name='shouldArchive' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402587994395</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='subject' value='&quot;[Timely]&quot;'/>
-		<apps:property name='label' value='~/Announcements'/>
-		<apps:property name='shouldStar' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402587994703</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='subject:&quot;Updated Invitation&quot;'/>
-		<apps:property name='label' value='~/Calendaring'/>
-		<apps:property name='shouldArchive' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402587995881</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='subject' value='[Watercooler]'/>
-		<apps:property name='label' value='~/Watercooler'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402587996152</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='subject:([whereabouts] OR [?u@] OR [wfh] OR [ooo])'/>
-		<apps:property name='label' value='~/Whereabouts'/>
-		<apps:property name='shouldNeverSpam' value='true'/>
-		<apps:property name='shouldNeverMarkAsImportant' value='true'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588010561</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='from' value='confluence@fourkitchens.atlassian.net'/>
-		<apps:property name='label' value='~/Conflucence'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588025231</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='from' value='jira@fourkitchens.atlassian.net'/>
-		<apps:property name='label' value='~/JIRA'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588164000</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='subject' value='[SDOR] OR [SOC] OR [DOR]'/>
-		<apps:property name='label' value='#/Stanford'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588164017</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='from:@stanford.edu OR to:@stanford.edu'/>
-		<apps:property name='label' value='#/Stanford'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588164243</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='subject:&quot;[Texas Exes]&quot; OR to:texasexes@fourkitchens.com'/>
-		<apps:property name='label' value='#/Texas Exes'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588295906</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='subject:(&quot;[Everyone]&quot; OR &quot;[HR]&quot;)'/>
-		<apps:property name='label' value='~/Announcements'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402588350688</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='from' value='no-reply@notableapp.com'/>
-		<apps:property name='label' value='~/Notable'/>
-		<apps:property name='shouldNeverMarkAsImportant' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402590141137</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(from:(notifications@harvestapp.com) OR subject:(&quot;[Harvest]&quot; OR &quot;[Time Tracking]&quot;)'/>
-		<apps:property name='label' value='~/Harvest'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402600141919</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(subject:(&quot;DrupalCon&quot; OR &quot;DrupalCamp&quot; OR &quot;[Events]&quot;))'/>
-		<apps:property name='label' value='~/Events'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402600414335</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(subject:(&quot;Full Plate Living&quot; OR &quot;[FPL]&quot;)) OR (from:fullplateliving.org)'/>
-		<apps:property name='label' value='#/Full Plate Living'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402602420189</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(subject:gTLDs OR subject:WHOIS OR subject:ICANN OR subject:CZDAP OR subject:CZDS)'/>
-		<apps:property name='label' value='#/ICANN'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402610522815</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(from:(&quot;docs.google.com&quot;))'/>
-		<apps:property name='label' value='~/Docs'/>
-		<apps:property name='shouldNeverMarkAsImportant' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402610590036</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(subject:(&quot;[OSF&quot; or &quot;OSF:&quot; or &quot;Open Society Foundations&quot;) OR from:opensocietyfoundations.org)'/>
-		<apps:property name='label' value='#/Open Society Foundations'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402632089597</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='from' value='donotreply@hipchat.com'/>
-		<apps:property name='label' value='~/HipChat'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402634104848</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(subject:(&quot;Invitation:&quot; OR &quot;Canceled Event:&quot; OR &quot;Accepted:&quot;) AND &quot;Google Calendar&quot;'/>
-		<apps:property name='label' value='~/Calendaring'/>
-		<apps:property name='shouldNeverMarkAsImportant' value='true'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402670532670</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='(list:fourkitchens.github.com OR from:noreply@github.com OR from:notifications@github.com)'/>
-		<apps:property name='label' value='~/GitHub'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402670564114</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='to:(&quot;worldpulse@fourkitchens.com&quot; OR &quot;core.4k@worldpulse.com&quot;) OR (from:worldpulse.com) OR (subject:&quot;[World Pulse]&quot; OR subject:&quot;[WP]&quot; OR subject:&quot;[WP/4K]&quot; OR subject:&quot;[worldpulse]&quot;)'/>
-		<apps:property name='label' value='#/World Pulse'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-	<entry>
-		<category term='filter'></category>
-		<title>Mail Filter</title>
-		<id>tag:mail.google.com,2008:filter:1402674674479</id>
-		<updated>2014-06-13T18:42:05Z</updated>
-		<content></content>
-		<apps:property name='hasTheWord' value='filename:doc OR filename:docx OR filename:xls OR filename:xlsx OR filename:pdf OR filename:ppt OR filename:pptx'/>
-		<apps:property name='label' value='%/Attachments'/>
-		<apps:property name='sizeOperator' value='s_sl'/>
-		<apps:property name='sizeUnit' value='s_smb'/>
-	</entry>
-</feed>
+Subject includes "WFH" but not "OOO" or "offline"
+  Archive
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402587994395</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='subject' value='&quot;[Timely]&quot;'/>
+    <apps:property name='label' value='~/Announcements'/>
+    <apps:property name='shouldStar' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject includes [timely] case insensitive
+  Star
+  Label ~/Announcements
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402587994703</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='subject:&quot;Updated Invitation&quot;'/>
+    <apps:property name='label' value='~/Calendaring'/>
+    <apps:property name='shouldArchive' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject begins with 'Updated Invitation:'
+  Archive
+  Label ~/Calendaring
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402587995881</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='subject' value='[Watercooler]'/>
+    <apps:property name='label' value='~/Watercooler'/>
+  </entry>
+
+Subject contains [watercooler] case insensitive
+  Label ~/Watercooler
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402587996152</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='subject:([whereabouts] OR [?u@] OR [wfh] OR [ooo])'/>
+    <apps:property name='label' value='~/Whereabouts'/>
+    <apps:property name='shouldNeverSpam' value='true'/>
+    <apps:property name='shouldNeverMarkAsImportant' value='true'/>
+  </entry>
+
+Subject contains [whereabouts] [wfh] or [ooo]
+  Never Spam
+  Never Important
+  Label ~/Whereabouts
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588010561</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='from' value='confluence@fourkitchens.atlassian.net'/>
+    <apps:property name='label' value='~/Conflucence'/>
+  </entry>
+
+From confluence@fourkitchens.atlassian.net
+  Label ~/Confluence
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588025231</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='from' value='jira@fourkitchens.atlassian.net'/>
+    <apps:property name='label' value='~/JIRA'/>
+  </entry>
+
+From jira@fourkitchens.atlassian.net
+  Label ~/JIRA
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588164000</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='subject' value='[SDOR] OR [SOC] OR [DOR]'/>
+    <apps:property name='label' value='#/Stanford'/>
+  </entry>
+
+Subject contains [SDOR] [SOC] [DOR] [Stanford] case-insensitive
+From @stanford.edu
+To @stanford.edu
+  Label #/Stanford
+
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588164017</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='from:@stanford.edu OR to:@stanford.edu'/>
+    <apps:property name='label' value='#/Stanford'/>
+  </entry>
+
+(Covered by the above)
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588164243</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='subject:&quot;[Texas Exes]&quot; OR to:texasexes@fourkitchens.com'/>
+    <apps:property name='label' value='#/Texas Exes'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject matches \[Texas\s?Exes\] case-insensitive
+  Label #/Texas Exes
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588295906</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='subject:(&quot;[Everyone]&quot; OR &quot;[HR]&quot;)'/>
+    <apps:property name='label' value='~/Announcements'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject contains [Everyone] [HR] case-insensitive
+  Label ~/Announcements
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402588350688</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='from' value='no-reply@notableapp.com'/>
+    <apps:property name='label' value='~/Notable'/>
+    <apps:property name='shouldNeverMarkAsImportant' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+From @notablapp.com
+  Label ~/Notable
+  Never Important
+  Never Spam
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402590141137</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(from:(notifications@harvestapp.com) OR subject:(&quot;[Harvest]&quot; OR &quot;[Time Tracking]&quot;)'/>
+    <apps:property name='label' value='~/Harvest'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject contains [Harvest] or [Time Tracking]
+From @harvestapp.com
+  Label ~/Harvest
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402600141919</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(subject:(&quot;DrupalCon&quot; OR &quot;DrupalCamp&quot; OR &quot;[Events]&quot;))'/>
+    <apps:property name='label' value='~/Events'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject matches \[Drupal(Camp|Con)[\w\s\d]*?\] or contains [Events]
+  Label ~/Events
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402600414335</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(subject:(&quot;Full Plate Living&quot; OR &quot;[FPL]&quot;)) OR (from:fullplateliving.org)'/>
+    <apps:property name='label' value='#/Full Plate Living'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject matches \[Full\s?Plate\s?(Living)?\] or \[FPL\]
+  Label #/Full Plate Living
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402602420189</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(subject:gTLDs OR subject:WHOIS OR subject:ICANN OR subject:CZDAP OR subject:CZDS)'/>
+    <apps:property name='label' value='#/ICANN'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject contains [gTLDs] [WHOIS] [ICANN] [CZDAP] [CZDS]
+  Label #/ICANN
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402610522815</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(from:(&quot;docs.google.com&quot;))'/>
+    <apps:property name='label' value='~/Docs'/>
+    <apps:property name='shouldNeverMarkAsImportant' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+From @docs.google.com
+  Never Important
+  Never Spam
+  Label ~/Docs
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402610590036</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(subject:(&quot;[OSF&quot; or &quot;OSF:&quot; or &quot;Open Society Foundations&quot;) OR from:opensocietyfoundations.org)'/>
+    <apps:property name='label' value='#/Open Society Foundations'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject contains [osf] [open society foundations] case-insensitive
+From @opensocietyfoundations.org
+  Label #/Open Society Foundations
+
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402632089597</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='from' value='donotreply@hipchat.com'/>
+    <apps:property name='label' value='~/HipChat'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+From donotreply@hipchat.com
+  Label ~/HipChat
+  Never Important
+  Never Spam
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402634104848</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(subject:(&quot;Invitation:&quot; OR &quot;Canceled Event:&quot; OR &quot;Accepted:&quot;) AND &quot;Google Calendar&quot;'/>
+    <apps:property name='label' value='~/Calendaring'/>
+    <apps:property name='shouldNeverMarkAsImportant' value='true'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject begins with 'Invitation:' 'Accepted:' or 'Canceled Event:'
+AND Body contains 'Google Calendar'
+  Label ~/Calendaring
+  Never Important
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402670532670</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='(list:fourkitchens.github.com OR from:noreply@github.com OR from:notifications@github.com)'/>
+    <apps:property name='label' value='~/GitHub'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+From noreply@github.com
+From notifications@github.com
+List fourkitchens.github.com
+  Label ~/GitHub
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402670564114</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='to:(&quot;worldpulse@fourkitchens.com&quot; OR &quot;core.4k@worldpulse.com&quot;) OR (from:worldpulse.com) OR (subject:&quot;[World Pulse]&quot; OR subject:&quot;[WP]&quot; OR subject:&quot;[WP/4K]&quot; OR subject:&quot;[worldpulse]&quot;)'/>
+    <apps:property name='label' value='#/World Pulse'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+Subject matches /\[W(orld)?\s?P(ulse)?(\/4K)?\]/
+To @worldpulse.com
+To worldpulse@fourkitchens.com
+From @worldpulse.com
+  Label #/World Pulse
+
+  <entry>
+    <category term='filter'></category>
+    <title>Mail Filter</title>
+    <id>tag:mail.google.com,2008:filter:1402674674479</id>
+    <updated>2014-06-13T18:42:05Z</updated>
+    <content></content>
+    <apps:property name='hasTheWord' value='filename:doc OR filename:docx OR filename:xls OR filename:xlsx OR filename:pdf OR filename:ppt OR filename:pptx'/>
+    <apps:property name='label' value='%/Attachments'/>
+    <apps:property name='sizeOperator' value='s_sl'/>
+    <apps:property name='sizeUnit' value='s_smb'/>
+  </entry>
+
+(This can stay in Gmail filters)
