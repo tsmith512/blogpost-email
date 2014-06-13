@@ -28,103 +28,103 @@ function autoFilter(thread) {
 
 # IMMEDIATE TO DO ITEMS
 
-Subject includes [timely] case insensitive
-- Star
-- Label ~/Announcements
+- Subject includes `[timely]` case insensitive
+  - Star
+  - Label ~/Announcements
 
 
 # WHEREABOUTS
 
-Subject contains [whereabouts] [wfh] or [ooo] case-insensitive
-- Label ~/Whereabouts
-- Never Spam
-- Never Important
-- Unless subject contains "OOO", "offline", or "unavailable" archive
+- Subject contains `[whereabouts] [wfh] [ooo]` case-insensitive
+  - Label ~/Whereabouts
+  - Never Spam
+  - Never Important
+  - Unless subject contains "OOO", "offline", or "unavailable" archive
 
 
 # GOOGLE CALENDAR
 
-Subject begins with 'Invitation:' 'Accepted:' or 'Canceled Event:'
-AND Body contains 'Google Calendar'
-- Label ~/Calendaring
-- Never Important
+- Subject begins with 'Invitation:' 'Accepted:' or 'Canceled Event:'
+- AND Body contains 'Google Calendar'
+  - Label ~/Calendaring
+  - Never Important
 
-Subject begins with 'Updated Invitation:'
-- Archive
-- Label ~/Calendaring
+- Subject begins with 'Updated Invitation:'
+  - Archive
+  - Label ~/Calendaring
 
 
 # GENERAL DISCUSSION
 
-Subject contains [watercooler] case insensitive
--Label ~/Watercooler
+- Subject contains `[watercooler]` case insensitive
+  - Label ~/Watercooler
 
-Subject contains [Everyone] [HR] case-insensitive
-- Label ~/Announcements
+- Subject contains `[Everyone] [HR]` case-insensitive
+  - Label ~/Announcements
 
-Subject matches \[Drupal(Camp|Con)[\w\s\d]*?\] or contains [Events]
-- Label ~/Events
+- Subject matches `\[Drupal(Camp|Con)[\w\s\d]*?\]` or contains [Events]
+  - Label ~/Events
 
 
 # APPLICATION NOTIFICATIONS
 
-From confluence@fourkitchens.atlassian.net
-- Label ~/Confluence
+- From confluence@fourkitchens.atlassian.net
+  - Label ~/Confluence
 
-From jira@fourkitchens.atlassian.net
-- Label ~/JIRA
+- From jira@fourkitchens.atlassian.net
+  - Label ~/JIRA
 
-From @notablapp.com
-- Label ~/Notable
-- Never Important
-- Never Spam
+- From @notablapp.com
+  - Label ~/Notable
+  - Never Important
+  - Never Spam
 
-From @docs.google.com
-From (via Google Drive)
-Mailed-by doclist.bounces.google.com
-- Never Important
-- Never Spam
-- Label ~/Docs
+- From @docs.google.com
+- From (via Google Drive)
+- Mailed-by doclist.bounces.google.com
+  - Never Important
+  - Never Spam
+  - Label ~/Docs
 
-Subject contains [Harvest] or [Time Tracking]
-From @harvestapp.com
-- Label ~/Harvest
+- Subject contains `[Harvest]` or `[Time Tracking]`
+- From @harvestapp.com
+  - Label ~/Harvest
 
-From donotreply@hipchat.com
-- Label ~/HipChat
-- Never Important
-- Never Spam
+- From donotreply@hipchat.com
+  - Label ~/HipChat
+  - Never Important
+  - Never Spam
 
-From noreply@github.com
-From notifications@github.com
-List fourkitchens.github.com
-- Label ~/GitHub
+- From noreply@github.com
+- From notifications@github.com
+- List fourkitchens.github.com
+  - Label ~/GitHub
 
 
 # CLIENT DISCUSSION
 
-Subject contains [SDOR] [SOC] [DOR] [Stanford] case-insensitive
-From @stanford.edu
-To @stanford.edu
-- Label #/Stanford
+- Subject contains `[SDOR] [SOC] [DOR] [Stanford]` case-insensitive
+- From @stanford.edu
+- To @stanford.edu
+  - Label #/Stanford
 
-Subject matches \[Texas\s?Exes\] case-insensitive
-- Label #/Texas Exes
+- Subject matches `\[Texas\s?Exes\]` case-insensitive
+  - Label #/Texas Exes
 
-Subject matches \[Full\s?Plate\s?(Living)?\] or \[FPL\]
-- Label #/Full Plate Living
+- Subject matches `\[Full\s?Plate\s?(Living)?\]` or `\[FPL\]`
+  - Label #/Full Plate Living
 
-Subject contains [gTLDs] [WHOIS] [ICANN] [CZDAP] [CZDS]
-- Label #/ICANN
+- Subject contains [gTLDs] [WHOIS] [ICANN] [CZDAP] [CZDS]
+  - Label #/ICANN
 
-Subject contains [osf] [open society foundations] case-insensitive
-From @opensocietyfoundations.org
-- Label #/Open Society Foundations
+- Subject contains [osf] [open society foundations] case-insensitive
+- From @opensocietyfoundations.org
+  - Label #/Open Society Foundations
 
-Subject matches /\[W(orld)?\s?P(ulse)?(\/4K)?\]/
-To @worldpulse.com
-To worldpulse@fourkitchens.com
-From @worldpulse.com
-- Label #/World Pulse
+- Subject matches `/\[W(orld)?\s?P(ulse)?(\/4K)?\]/`
+- To @worldpulse.com
+- To worldpulse@fourkitchens.com
+- From @worldpulse.com
+  - Label #/World Pulse
 
 (Retain Attachments filter in gmail)
