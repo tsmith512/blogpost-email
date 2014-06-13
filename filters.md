@@ -2,15 +2,24 @@
 
 ``` js
 function autoFilter(thread) {
+  // Pull the newest twenty-five threads in the inbox; it is unlikely we'll
+  // receive more than that number of _threads_ in just a few minutes.
+  var threads = GmailApp.getInboxThreads(0, 25);
+
+  threads.forEach(processIncoming);
+}
+
+function processIncoming(thread, index, threads)
+  // If this thread already has labels on it, it has already been processed.
+  // Don't process the thread again; it's either new enough to show up in the
+  // cron job, or a new message came in on this thread.
+  if ( thread.getLabels().length ) return;
+
   var msg = thread.getMessages()[0];
   var subject = thread.getFirstMessageSubject();
   var to = [msg.getTo(), msg.getCc()].join();
   var from = msg.getFrom();
 
-  // If this thread already has labels on it, it has already been processed.
-  // Don't process the thread again; it's either new enough to show up in the
-  // cron job, or a new message came in on this thread.
-  if ( thread.getLabels().length ) return;
 
   // Match and apply labels and actions as necessary
   // https://developers.google.com/apps-script/reference/gmail/gmail-message
@@ -85,6 +94,10 @@ function autoFilter(thread) {
 
 - Subject contains `[watercooler]` case insensitive
   - Label ~/Watercooler
+
+```
+  if (subject.match(/\[(\w+[\s-\/])?watercooler\]/i))
+```
 
 - Subject contains `[Everyone] [HR]` case-insensitive
   - Label ~/Announcements
