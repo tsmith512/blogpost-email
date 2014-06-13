@@ -2,7 +2,7 @@
 
 function autoFilter(thread) {
   var msg = thread.getMessages()[0];
-  var subject = msg.getSubject();
+  var subject = thread.getFirstMessageSubject();
   var to = [msg.getTo(), msg.getCc()].join();
   var from = msg.getFrom();
 
