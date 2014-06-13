@@ -15,9 +15,11 @@ I came to Gmail from Exchange; Filters have always seemed less powerful than Rul
 My gripes with Gmail Filters:
 
 - Search is limited, seemingly, to word and number characters; special characters
-  have no effect in searches, so I can't isolate "[category]" strings in subjects.
+  have no effect in searches, so I can't isolate "**[**category**]**" strings we
+  use in subject lines.
 - Complex groups of boolean logic have a tendency to produce imprecise results
-  and there's no way to have "additional criteria"
+  and there's no way to have "additional criteria" (even if multiple fields are
+  used in the advanced search/filter builder, they're flatted into a single query)
 - Other header information or metadata can't be used in the search criteria
   (like mailed-by to help weed out notifications "from" a user sent on their
   behalf by another service)
