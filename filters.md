@@ -96,36 +96,72 @@ function processIncoming(thread, index, threads)
   - Label ~/Watercooler
 
 ```
-  if (subject.match(/\[(\w+[\s-\/])?watercooler\]/i))
+  if (subject.match(/\[(\w+[\s\-\/])?watercooler\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Watercooler") );
+  }
 ```
 
 - Subject contains `[Everyone] [HR]` case-insensitive
   - Label ~/Announcements
 
-- Subject matches `\[Drupal(Camp|Con).*?\]` or contains [Events]
+```
+  if (subject.match(/\[(everyone|hr|announcement)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+  }
+```
+
+- Subject matches `/\[Drupal(Camp|Con).*?\]/i` or contains [Events]
   - Label ~/Events
+
+```
+  if (subject.match(/\[(Drupal(Camp|Con).*?|Event(s)?)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+  }
+```
 
 - Subject contains `[content] [blog] [fourword] [headless] [drupal]`
   - Label ~/Initiatives
+
+```
+  if (subject.match(/\[(content|blog|fourword|headless|drupal).*\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Initiatives") );
+  }
+```
 
 # Application Notifications
 
 - From confluence@fourkitchens.atlassian.net
   - Label ~/Confluence
 
+```
+  if (from == 'confluence@fourkitchens.atlassian.net') {
+    thread.addLabel( GmailApp.getUserLabelByName("Confluence") );
+  }
+```
+
 - From jira@fourkitchens.atlassian.net
   - Label ~/JIRA
+
+```
+  if (from == 'jira@fourkitchens.atlassian.net') {
+    thread.addLabel( GmailApp.getUserLabelByName("JIRA") );
+  }
+```
 
 - From @notablapp.com
   - Label ~/Notable
   - Never Important
-  - Never Spam
+
+```
+  if (from.indexOf('notableapp.com') > -1) {
+    thread.addLabel( GmailApp.getUserLabelByName("Notable") ).markUnimportant();
+  }
+```
 
 - From @docs.google.com
 - From (via Google Drive)
 - Mailed-by doclist.bounces.google.com
   - Never Important
-  - Never Spam
   - Label ~/Docs
 
 - Subject contains `[Harvest]` or `[Time Tracking]`
@@ -135,7 +171,6 @@ function processIncoming(thread, index, threads)
 - From donotreply@hipchat.com
   - Label ~/HipChat
   - Never Important
-  - Never Spam
 
 - From noreply@github.com
 - From notifications@github.com
