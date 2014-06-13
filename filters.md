@@ -1,5 +1,6 @@
 # TEMPLATE CODE
 
+``` js
 function autoFilter(thread) {
   var msg = thread.getMessages()[0];
   var subject = thread.getFirstMessageSubject();
@@ -23,82 +24,81 @@ function autoFilter(thread) {
 
   */
 }
-
+```
 
 # IMMEDIATE TO DO ITEMS
 
 Subject includes [timely] case insensitive
-  Star
-  Label ~/Announcements
+- Star
+- Label ~/Announcements
 
 
 # WHEREABOUTS
 
 Subject contains [whereabouts] [wfh] or [ooo] case-insensitive
-  Label ~/Whereabouts
-  Never Spam
-  Never Important
-
-  Unless subject contains "OOO", "offline", or "unavailable" archive
+- Label ~/Whereabouts
+- Never Spam
+- Never Important
+- Unless subject contains "OOO", "offline", or "unavailable" archive
 
 
 # GOOGLE CALENDAR
 
 Subject begins with 'Invitation:' 'Accepted:' or 'Canceled Event:'
 AND Body contains 'Google Calendar'
-  Label ~/Calendaring
-  Never Important
+- Label ~/Calendaring
+- Never Important
 
 Subject begins with 'Updated Invitation:'
-  Archive
-  Label ~/Calendaring
+- Archive
+- Label ~/Calendaring
 
 
 # GENERAL DISCUSSION
 
 Subject contains [watercooler] case insensitive
-  Label ~/Watercooler
+-Label ~/Watercooler
 
 Subject contains [Everyone] [HR] case-insensitive
-  Label ~/Announcements
+- Label ~/Announcements
 
 Subject matches \[Drupal(Camp|Con)[\w\s\d]*?\] or contains [Events]
-  Label ~/Events
+- Label ~/Events
 
 
 # APPLICATION NOTIFICATIONS
 
 From confluence@fourkitchens.atlassian.net
-  Label ~/Confluence
+- Label ~/Confluence
 
 From jira@fourkitchens.atlassian.net
-  Label ~/JIRA
+- Label ~/JIRA
 
 From @notablapp.com
-  Label ~/Notable
-  Never Important
-  Never Spam
+- Label ~/Notable
+- Never Important
+- Never Spam
 
 From @docs.google.com
 From (via Google Drive)
 Mailed-by doclist.bounces.google.com
-  Never Important
-  Never Spam
-  Label ~/Docs
+- Never Important
+- Never Spam
+- Label ~/Docs
 
 Subject contains [Harvest] or [Time Tracking]
 From @harvestapp.com
-  Label ~/Harvest
+- Label ~/Harvest
 
 From donotreply@hipchat.com
-  Label ~/HipChat
-  Never Important
-  Never Spam
+- Label ~/HipChat
+- Never Important
+- Never Spam
 
 From noreply@github.com
 From notifications@github.com
 List fourkitchens.github.com
-  Label ~/GitHub
+- Label ~/GitHub
 
 
 # CLIENT DISCUSSION
@@ -106,25 +106,25 @@ List fourkitchens.github.com
 Subject contains [SDOR] [SOC] [DOR] [Stanford] case-insensitive
 From @stanford.edu
 To @stanford.edu
-  Label #/Stanford
+- Label #/Stanford
 
 Subject matches \[Texas\s?Exes\] case-insensitive
-  Label #/Texas Exes
+- Label #/Texas Exes
 
 Subject matches \[Full\s?Plate\s?(Living)?\] or \[FPL\]
-  Label #/Full Plate Living
+- Label #/Full Plate Living
 
 Subject contains [gTLDs] [WHOIS] [ICANN] [CZDAP] [CZDS]
-  Label #/ICANN
+- Label #/ICANN
 
 Subject contains [osf] [open society foundations] case-insensitive
 From @opensocietyfoundations.org
-  Label #/Open Society Foundations
+- Label #/Open Society Foundations
 
 Subject matches /\[W(orld)?\s?P(ulse)?(\/4K)?\]/
 To @worldpulse.com
 To worldpulse@fourkitchens.com
 From @worldpulse.com
-  Label #/World Pulse
+- Label #/World Pulse
 
 (Retain Attachments filter in gmail)
