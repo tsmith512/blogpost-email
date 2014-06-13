@@ -53,6 +53,8 @@ From @notablapp.com
   Never Spam
 
 From @docs.google.com
+From (via Google Drive)
+Mailed-by doclist.bounces.google.com
   Never Important
   Never Spam
   Label ~/Docs
