@@ -92,6 +92,8 @@ function autoFilter(thread) {
 - Subject matches `\[Drupal(Camp|Con).*?\]` or contains [Events]
   - Label ~/Events
 
+- Subject contains `[content] [blog] [fourword] [headless] [drupal]`
+  - Label ~/Initiatives
 
 # Application Notifications
 
