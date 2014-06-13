@@ -1,20 +1,26 @@
-# Email is killing me, I'll use JavaScript and Searching
+# Email is killing me
 
 We here at [Four Kitchens](http://www.fourkitchens.com) do love us some email.
 Last week, I self-awarded a prize for having achieved 4,000 unread items in my
-inbox, with 2,000 read items (that's 7 emails I haven't addressed per day of my
-employment). I could keep going for the record, but I thought I'd attempt to use
-nerdiness to take better control.
+inbox, with another 3,000 read items sitting in my inbox for no reason. I could
+keep going for the record, but I thought I'd attempt to use nerdiness to take
+better control.
+
+(Ultimately, it's a chore that simply has to be done, but maybe it can be easier.)
 
 ## Filters feel limited
 
-I came to Gmail from Exchange; Filters have always seemed less powerful than rules.
+I came to Gmail from Exchange; Filters have always seemed less powerful than Rules.
 
 My gripes with Gmail Filters:
 
 - Search is limited, seemingly, to word and number characters; special characters
   have no effect in searches, so I can't isolate "[category]" strings in subjects.
 - Complex groups of boolean logic have a tendency to produce imprecise results
+  and there's no way to have "additional criteria"
+- Other header information or metadata can't be used in the search criteria
+  (like mailed-by to help weed out notifications "from" a user sent on their
+  behalf by another service)
 - Filters cannot be run on sent mail (for the purposes of auto-labeling)
 - Filters cannot be run on a delay
 - No regular expression matching
@@ -28,12 +34,20 @@ My gripes with Gmail Filters:
 Label _everything_, both incoming and outgoing. Additionally, some theads are
 starred, marked as `/(un)?(important|read)/`, or immediately auto-archived.
 
+{{ Walkthrough of autoLabel() }}
+
 ### Step 2: Script Email Expirations
 
 My second function will run hourly to automatically archive threads that have
 dated out. Since the `autoLabel()` function has everything categoried, we will
 base retention and expiration off of labels, thread ages, and whether or not
 the thread is read.
+
+{{ Walkthrough of autoArchive() }}
+
+### Step 3: Setup Triggers (like Cron for your inbox)
+
+{{ Trigger instruction }}
 
 ## Declare a Reset, then Profit
 
