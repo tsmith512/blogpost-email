@@ -1,3 +1,30 @@
+# TEMPLATE CODE
+
+function autoFilter(thread) {
+  var msg = thread.getMessages()[0];
+  var subject = msg.getSubject();
+  var to = [msg.getTo(), msg.getCc()].join();
+  var from = msg.getFrom();
+
+  // Match and apply labels and actions as necessary
+  // https://developers.google.com/apps-script/reference/gmail/gmail-message
+  /*
+    msg.star()
+    msg.unstar()
+    msg.markRead()
+
+    thread.addLabel() // var label = GmailApp.getUserLabelByName("MyLabel");
+    thread.markRead()
+    thread.markUnread()
+    thread.markImportant()
+    thread.markUnimportant()
+    thread.moveToInbox()
+    thread.moveToArchive()
+
+  */
+}
+
+
 # IMMEDIATE TO DO ITEMS
 
 Subject includes [timely] case insensitive
