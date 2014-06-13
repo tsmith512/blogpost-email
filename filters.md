@@ -26,7 +26,7 @@ function autoFilter(thread) {
 }
 ```
 
-# IMMEDIATE TO DO ITEMS
+# Immediate To-Do Items
 
 - Subject includes `[timely]` case insensitive
   - Star
@@ -39,7 +39,7 @@ function autoFilter(thread) {
   }
 ```
 
-# WHEREABOUTS
+# Whereabouts
 
 - Subject contains `[whereabouts] [wfh] [ooo]` case-insensitive
   - Label ~/Whereabouts
@@ -58,19 +58,25 @@ function autoFilter(thread) {
   }
 ```
 
-# GOOGLE CALENDAR
+# Google Calendar
 
 - Subject begins with 'Invitation:' 'Accepted:' or 'Canceled Event:'
-- AND Body contains 'Google Calendar'
+- AND Body contains 'Google Calendar' _(Not testing for this at the moment)_
   - Label ~/Calendaring
   - Never Important
+  - If subject begins with 'Updated Invitation:', auto-archive
 
-- Subject begins with 'Updated Invitation:'
-  - Archive
-  - Label ~/Calendaring
+```
+  if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
+    thread.addLabel( GmailApp.getUserLabelByName("Calendaring") ).markUnimportant();
 
+    if (subject.indexOf('Updated') === 0) {
+      thread.moveToArchive();
+    }
+  }
+```
 
-# GENERAL DISCUSSION
+# General Discussion
 
 - Subject contains `[watercooler]` case insensitive
   - Label ~/Watercooler
@@ -82,7 +88,7 @@ function autoFilter(thread) {
   - Label ~/Events
 
 
-# APPLICATION NOTIFICATIONS
+# Application Notifications
 
 - From confluence@fourkitchens.atlassian.net
   - Label ~/Confluence
@@ -117,7 +123,7 @@ function autoFilter(thread) {
   - Label ~/GitHub
 
 
-# CLIENT DISCUSSION
+# Client Discussion
 
 - Subject contains `[SDOR] [SOC] [DOR] [Stanford]` case-insensitive
 - From @stanford.edu
