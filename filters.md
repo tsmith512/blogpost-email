@@ -92,20 +92,20 @@ function processIncoming(thread, index, threads)
 
 # General Discussion
 
-- Subject contains `[watercooler]` case insensitive
+- Subject contains `[watercooler]` case insensitive, with possibility for additional context in the `[]` tag
   - Label ~/Watercooler
 
 ```
-  if (subject.match(/\[(\w+[\s\-\/])?watercooler\]/i)) {
+  if (subject.match(/\[.*watercooler.*\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("Watercooler") );
   }
 ```
 
-- Subject contains `[Everyone] [HR]` case-insensitive
+- Subject contains `[Everyone] [HR] [peopling]` case-insensitive
   - Label ~/Announcements
 
 ```
-  if (subject.match(/\[(everyone|hr|announcement)\]/i)) {
+  if (subject.match(/\[(everyone|hr|announcement|people?ing)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
   }
 ```
