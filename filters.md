@@ -17,7 +17,7 @@ function processIncoming(thread, index, threads)
 
   var msg = thread.getMessages()[0];
   var subject = thread.getFirstMessageSubject();
-  var to = [msg.getTo(), msg.getCc()].join();
+  var to = [msg.getTo(), msg.getCc()].join(', ');
   var from = msg.getFrom();
 
 
@@ -164,18 +164,45 @@ function processIncoming(thread, index, threads)
   - Never Important
   - Label ~/Docs
 
+```
+  if (from.indexOf('docs.google.com') > -1) {
+    thread.addLabel( GmailApp.getUserLabelByName("Docs") ).markUnimportant();
+  }
+```
+
 - Subject contains `[Harvest]` or `[Time Tracking]`
 - From @harvestapp.com
   - Label ~/Harvest
+
+```
+  if (from.indexOf('harvestapp.com') > -1 || subject.match(/\[(harvest|time( tracking)?|hours)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Harvest") ).markUnimportant();
+  }
+```
+
 
 - From donotreply@hipchat.com
   - Label ~/HipChat
   - Never Important
 
+```
+  if (from == 'donotreply@hipchat.com') {
+    thread.addLabel( GmailApp.getUserLabelByName("HipChat") ).markUnimportant();
+  }
+```
+
+
 - From noreply@github.com
 - From notifications@github.com
 - List fourkitchens.github.com
   - Label ~/GitHub
+
+
+```
+  if (from.match(/(noreply|notifications).*\@github\.com/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("GitHub") ).markUnimportant();
+  }
+```
 
 
 # Client Discussion
@@ -185,18 +212,50 @@ function processIncoming(thread, index, threads)
 - To @stanford.edu
   - Label #/Stanford
 
+```
+  if (from.indexOf('stanford.edu') > -1 || to.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor|soc)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Stanford") ).markUnimportant();
+  }
+```
+
 - Subject matches `\[Texas\s?Exes\]` case-insensitive
   - Label #/Texas Exes
+
+```
+  if (from.indexOf('texasexes.org') > -1 || to.indexOf('texasexes.org') > -1 || subject.match(/\[(texas ?exes|txex)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Texas Exes") ).markUnimportant();
+  }
+```
+
 
 - Subject matches `\[Full\s?Plate\s?(Living)?\]` or `\[FPL\]`
   - Label #/Full Plate Living
 
+```
+  if (from.indexOf('fullplateliving.org') > -1 || to.indexOf('fullplateliving.org') > -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Full Plate Living") ).markUnimportant();
+  }
+```
+
 - Subject contains [gTLDs] [WHOIS] [ICANN] [CZDAP] [CZDS]
   - Label #/ICANN
+
+
+```
+  if (from.indexOf('icann.org') > -1 || to.indexOf('icann.org') > -1 || subject.match(/\[(gtlds|whois|icann|czdap|czds)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("ICANN") ).markUnimportant();
+  }
+```
 
 - Subject contains [osf] [open society foundations] case-insensitive
 - From @opensocietyfoundations.org
   - Label #/Open Society Foundations
+
+```
+  if (from.indexOf('opensocietyfoundations.org') > -1 || to.indexOf('opensocietyfoundations.org') > -1 || subject.match(/\[o(pen)?\s?s(ociety)?\s?f(oundation)?s?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Open Society Foundations") ).markUnimportant();
+  }
+```
 
 - Subject matches `/\[W(orld)?\s?P(ulse)?(\/4K)?\]/`
 - To @worldpulse.com
@@ -204,4 +263,10 @@ function processIncoming(thread, index, threads)
 - From @worldpulse.com
   - Label #/World Pulse
 
-(Retain Attachments filter in gmail)
+```
+  if (from.indexOf('worldpulse.com') > -1 || to.indexOf('worldpulse.com') > -1 || subject.match(/\[w(orld)?\s?p(ulse)?(\/4K)?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("World Pulse") ).markUnimportant();
+  }
+```
+
+_(Retain Attachments filter in Gmail)_
