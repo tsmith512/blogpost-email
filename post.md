@@ -48,7 +48,7 @@ function autoTagMessages(thread, index, threads) {
 A new function is created for tagging messages. We compile a list of useful
 variables and then move straight to categorizing:
 
-_Timely Messages_ generally require direct action, quickly. They are added to
+**Timely Messages** generally require direct action, quickly. They are added to
 the label '~/Announcements' by
 [`thread.addLabel()`](https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel))
 and also starred using
@@ -71,7 +71,7 @@ _Gotchas:_
   }
 ```
 
-_Whereabouts_ emails are generally uninteresting since I work remotely most of
+**Whereabouts** emails are generally uninteresting since I work remotely most of
 the time. They're all flagged as '~/Whereabouts' and, if they don't appear to
 indicate that the sender will be unavailable, they are archived immediately:
 
@@ -91,6 +91,42 @@ indicate that the sender will be unavailable, they are archived immediately:
 _Regex on line 2 <a href="http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi">visualized</a>:_
 
 ![Whereabouts Regular Expressions](images/regex-whereabouts.png)
+
+**Google Calendar** emails can be identified by what the subject line starts with:
+
+``` js
+  // Google Calendar Stuff
+  if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
+    thread.addLabel( GmailApp.getUserLabelByName("~/Calendaring") ).markUnimportant();
+  }
+```
+
+_Regex <a href="http://www.regexper.com/#%2F%5E((Updated%20)%3FInvitation%7CAccepted%7CCanceled(%20Event)%3F)%5C%3A%2F">visualized</a>:_
+
+![Google Calendar Regular Expressions](images/regex-gcal.png)
+
+**Client** emails get sorted as well. We're a little lax in the formatting of
+those tags, but regex makes that easier:
+
+``` js
+  else if (any.indexOf('fullplateliving.org') > -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("#/Full Plate Living") );
+  }
+```
+
+_Regex <a href="http://www.regexper.com/#%2F%5C%5Bf(ull)%3F%5Cs%3Fp(late)%3F%5Cs%3F(l%7Cliving)%3F%5C%5D%2Fi">visualized</a>:_
+
+![FPL Regular Expressions](images/regex-fpl.png)
+
+This matches `[fpl]`, `'[full plate]`, `[full plate living]`, `[fullplateliving]`,
+and various others, as well as any email sent to/from `@fullplateliving.org`.
+
+**In general,** the function contains three pieces:
+
+- `If` statements testing timeliness or general discussion
+- `If/else` statements testing for one of any application notification (Google
+  Calendar, GitHub, JIRA, Notable, etc.)
+- `If/else` statements testing for one of any client name
 
 ### Step 2: Script Email Expirations
 
