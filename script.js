@@ -60,6 +60,8 @@ function autoTagMessages(thread, index, threads) {
   if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
     thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
 
+    // Most of this is just "I'm working at home today", but this may be
+    // a poorly-imagined idea... We'll see...
     if (subject.match(/(ooo|offline|unavailable|errands)/i) === null) {
       thread.moveToArchive();
     }
@@ -112,8 +114,22 @@ function autoTagMessages(thread, index, threads) {
   }
 
   // Client Discussions
-  if (from.indexOf('stanford.edu') > -1 || to.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor|soc)\]/i)) {
+  if (any.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor|soc)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("Stanford") ).markUnimportant();
   }
-
+  if (any.indexOf('texasexes.org') > -1 || subject.match(/\[(texas ?exes|txex)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Texas Exes") ).markUnimportant();
+  }
+  if (any.indexOf('fullplateliving.org') > -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Full Plate Living") ).markUnimportant();
+  }
+  if (any.indexOf('icann.org') > -1 || subject.match(/\[(gtlds|whois|icann|czdap|czds)\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("ICANN") ).markUnimportant();
+  }
+  if (any.indexOf('opensocietyfoundations.org') > -1 || subject.match(/\[o(pen)?\s?s(ociety)?\s?f(oundation)?s?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("Open Society Foundations") ).markUnimportant();
+  }
+  if (any.indexOf('worldpulse.com') > -1 || subject.match(/\[w(orld)?\s?p(ulse)?(\/4K)?\]/i)) {
+    thread.addLabel( GmailApp.getUserLabelByName("World Pulse") ).markUnimportant();
+  }
 }
