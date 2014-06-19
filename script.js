@@ -53,12 +53,12 @@ function autoTagMessages(thread, index, threads) {
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
     msg.star();
-    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
   }
 
   // Whereabouts Info (except stuff I don't care about)
   if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
-    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
 
     // Most of this is just "I'm working at home today", but this may be
     // a poorly-imagined idea... We'll see...
@@ -69,7 +69,7 @@ function autoTagMessages(thread, index, threads) {
 
   // Google Calendar Stuff
   if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
-    thread.addLabel( GmailApp.getUserLabelByName("Calendaring") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/Calendaring") ).markUnimportant();
 
     if (subject.indexOf('Updated') === 0) {
       thread.moveToArchive();
@@ -78,58 +78,60 @@ function autoTagMessages(thread, index, threads) {
 
   // General Discussion
   if (subject.match(/\[.*watercooler.*\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Watercooler") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Watercooler") );
   }
   if (subject.match(/\[(everyone|hr|announcement|people?ing)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
   }
   if (subject.match(/\[(Drupal(Camp|Con).*?|Event(s)?)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
   }
   if (subject.match(/\[(content|blog|fourword|headless|drupal).*\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Initiatives") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Initiatives") );
   }
 
   // Application Notifications
   if (from == 'confluence@fourkitchens.atlassian.net') {
-    thread.addLabel( GmailApp.getUserLabelByName("Confluence") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/Confluence") );
   }
   if (from == 'jira@fourkitchens.atlassian.net') {
-    thread.addLabel( GmailApp.getUserLabelByName("JIRA") );
+    thread.addLabel( GmailApp.getUserLabelByName("~/JIRA") );
   }
   if (from.indexOf('notableapp.com') > -1) {
-    thread.addLabel( GmailApp.getUserLabelByName("Notable") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/Notable") ).markUnimportant();
   }
   if (from.indexOf('docs.google.com') > -1) {
-    thread.addLabel( GmailApp.getUserLabelByName("Docs") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/Docs") ).markUnimportant();
   }
   if (from.indexOf('harvestapp.com') > -1 || subject.match(/\[(harvest|time( tracking)?|hours)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Harvest") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/Harvest") ).markUnimportant();
   }
   if (from == 'donotreply@hipchat.com') {
-    thread.addLabel( GmailApp.getUserLabelByName("HipChat") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/HipChat") ).markUnimportant();
   }
   if (from.match(/(noreply|notifications).*\@github\.com/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("GitHub") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("~/GitHub") ).markUnimportant();
   }
 
   // Client Discussions
   if (any.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor|soc)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Stanford") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/Stanford") );
   }
   if (any.indexOf('texasexes.org') > -1 || subject.match(/\[(texas ?exes|txex)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Texas Exes") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/Texas Exes") );
   }
   if (any.indexOf('fullplateliving.org') > -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Full Plate Living") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/Full Plate Living") );
   }
   if (any.indexOf('icann.org') > -1 || subject.match(/\[(gtlds|whois|icann|czdap|czds)\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("ICANN") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/ICANN") );
   }
   if (any.indexOf('opensocietyfoundations.org') > -1 || subject.match(/\[o(pen)?\s?s(ociety)?\s?f(oundation)?s?\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("Open Society Foundations") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/Open Society Foundations") );
   }
   if (any.indexOf('worldpulse.com') > -1 || subject.match(/\[w(orld)?\s?p(ulse)?(\/4K)?\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("World Pulse") ).markUnimportant();
+    thread.addLabel( GmailApp.getUserLabelByName("#/World Pulse") );
   }
+
+  thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
 }
