@@ -1,4 +1,4 @@
-function batchArchive() {
+function autoArchive() {
   // Process up to 100 threads at once. GmailApp.modeThreadsToArchive
   // will not accept more than 100 threads at a time.
   var batchSize = 100;
@@ -39,7 +39,11 @@ function batchArchive() {
   }
 }
 
-function tagIncoming(thread, index, threads) {
+function batchIncoming() {
+  GmailApp.getUserLabelByName("Prefilter").getThreads().forEach(autoTagMessages);
+}
+
+function autoTagMessages(thread, index, threads) {
   var msg     = thread.getMessages()[0],
       subject = thread.getFirstMessageSubject(),
       to      = [msg.getTo(), msg.getCc()].join(', '),
