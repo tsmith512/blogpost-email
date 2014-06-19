@@ -1,4 +1,4 @@
-# Email is killing me
+# Rescuing Myself from the Email Monster with JavaScript
 
 We here at [Four Kitchens](http://www.fourkitchens.com) do love us some email.
 Last week, I self-awarded a prize for having achieved 4,000 unread items in my
