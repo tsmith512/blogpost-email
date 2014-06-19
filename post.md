@@ -53,16 +53,37 @@ the label '~/Announcements' by
 [`thread.addLabel()`](https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel))
 and also starred using
 [`message.star()`](https://developers.google.com/apps-script/reference/gmail/gmail-message#star()).
-_Note_ that the `addLabel()` function requires a Label object, not a string. Such
-an object can be obtaind using [`GmailApp.getUserLabelByName()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)).
-Be sure to include 'parent/child' if your labels are hierarchical. (In this case,
-'Announcements' is a child of '~').
 
-```
+_Gotchas:_
+- The `addLabel()` function requires a Label object, not a string. Such
+  an object can be obtaind using [`GmailApp.getUserLabelByName()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)).
+- Be sure to include 'parent/child' if your labels are hierarchical. (In this case,
+  'Announcements' is a child of '~').
+- When using `string.match()`, be sure to add the `i` flag at the end of the
+  pattern to ignore case, since authors may be inconsistent with case.
+
+``` js
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
     msg.star();
     thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
+  }
+```
+
+_Whereabouts_ emails are generally uninteresting since I work remotely most of
+the time. They're all flagged as '~/Whereabouts' and, if they don't appear to
+indicate that the sender will be unavailable, they are archived immediately:
+
+``` js
+  // Whereabouts Info (except stuff I don't care about)
+  if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
+    thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
+
+    // Most of this is just "I'm working at home today", but this may be
+    // a poorly-imagined idea... We'll see...
+    if (subject.match(/(ooo|offline|unavailable|errands)/i) === null) {
+      thread.moveToArchive();
+    }
   }
 ```
 
