@@ -45,7 +45,26 @@ function autoTagMessages(thread, index, threads) {
       any     = [to, from].join(', ');
 ```
 
-A new function is created
+A new function is created for tagging messages. We compile a list of useful
+variables and then move straight to categorizing:
+
+_Timely Messages_ generally require direct action, quickly. They are added to
+the label '~/Announcements' by
+[`thread.addLabel()`](https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel))
+and also starred using
+[`message.star()`](https://developers.google.com/apps-script/reference/gmail/gmail-message#star()).
+_Note_ that the `addLabel()` function requires a Label object, not a string. Such
+an object can be obtaind using [`GmailApp.getUserLabelByName()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)).
+Be sure to include 'parent/child' if your labels are hierarchical. (In this case,
+'Announcements' is a child of '~').
+
+```
+  // Immediate To-Do Items
+  if (subject.match(/\[timely\]/i) !== null) {
+    msg.star();
+    thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
+  }
+```
 
 ### Step 2: Script Email Expirations
 
