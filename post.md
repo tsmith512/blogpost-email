@@ -90,7 +90,7 @@ indicate that the sender will be unavailable, they are archived immediately:
 
 _Regex on line 2 <a href="http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi">visualized</a>:_
 
-![Whereabouts Regular Expressions](regex-whereabouts.png?raw=true)
+![Whereabouts Regular Expressions](raw/regex-whereabouts.png)
 
 ### Step 2: Script Email Expirations
 
