@@ -27,22 +27,31 @@ My gripes with Gmail Filters:
 - Filters cannot be run on a delay
 - No regular expression matching
 
-## Ta-Daa! Gmail can be scripted with JavaScript!
+## Ta-Daa! [Gmail can be scripted](https://developers.google.com/apps-script/reference/gmail/) with JavaScript!
 
 {{ Insert awesomesauce. }}
 
-### Step 1: Migrate Filters to JavaScript
+### Step 1: Migrate Filters to JavaScript for More Power
 
-Label _everything_, both incoming and outgoing. Additionally, some theads are
-starred, marked as `/(un)?(important|read)/`, or immediately auto-archived.
+**Goal:** Label _everything_, both incoming and outgoing. Additionally, some theads
+are starred, marked as `/(un)?(important|read)/`, or immediately auto-archived.
 
-{{ Walkthrough of autoLabel() }}
+``` js
+function autoTagMessages(thread, index, threads) {
+  var msg     = thread.getMessages()[0],
+      subject = thread.getFirstMessageSubject(),
+      to      = [msg.getTo(), msg.getCc()].join(', '),
+      from    = msg.getFrom(),
+      any     = [to, from].join(', ');
+```
+
+A new function is created
 
 ### Step 2: Script Email Expirations
 
 My second function will run hourly to automatically archive threads that have
-dated out. Since the `autoLabel()` function has everything categoried, we will
-base retention and expiration off of labels, thread ages, and whether or not
+dated out. Since the `autoTagMessages()` function has everything categorized, we
+will base retention and expiration off of labels, thread ages, and whether or not
 the thread is read.
 
 {{ Walkthrough of autoArchive() }}
