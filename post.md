@@ -128,18 +128,101 @@ and various others, as well as any email sent to/from `@fullplateliving.org`.
   Calendar, GitHub, JIRA, Notable, etc.)
 - `If/else` statements testing for one of any client name
 
+This allows a thread to end up with multiple labels at the expense of running a
+little slower, but we handle that when we set up the triggers (Step 3).
+
 ### Step 2: Script Email Expirations
 
-My second function will run hourly to automatically archive threads that have
-dated out. Since the `autoTagMessages()` function has everything categorized, we
-will base retention and expiration off of labels, thread ages, and whether or not
-the thread is read.
+My second function will archive threads that have dated out. Since the
+`autoTagMessages()` function has nearly everything categorized, we will base
+retention and expiration off of labels, thread ages, and whether or not
+the thread is read. This can be done by executing Gmail searches
+programmatically using [`GmailApp.search()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#search(String))
 
-{{ Walkthrough of autoArchive() }}
+Set up the searches as standard search queries:
+
+``` js
+  // We'll archive anything matching these searches
+  var searches = [
+    // General Stuff:
+    'in:inbox label:~-whereabouts older_than:1d', // Highly timely
+    'in:inbox label:~-calendaring older_than:3d', // Shows in Google Calendar
+    '(in:inbox label:~-watercooler) AND ((is:read older_than:7d) OR (is:unread older_than:21d))',
+    '(in:inbox label:~-announcements) AND ((is:read older_than:14d) OR (is:unread older_than:1m))',
+
+    // Services Updates (timely; probably seen in-application)
+    '(in:inbox) AND (label:~-docs OR label:~-jira OR label:~-confluence OR label:~-notable OR label:~-harvest) AND ((is:read older_than:1d) OR (is:unread older_than:3d))',
+    'in:inbox label:~-hipchat older_than:1d',
+
+    // Catch all, don't keep anything stale:
+    'in:inbox is:read older_than:2m'
+  ];
+```
+
+Then run the searches and, in batches of 100, archive the resulting threads:
+
+``` js
+  for (i = 0; i < searches.length; i++) {
+    // Run the search, EXLUDING anything that is starred:
+    var threads = GmailApp.search(searches[i] + ' AND (-is:starred)');
+
+    // Batch through the results to archive:
+    for (j = 0; j < threads.length; j+=batchSize) {
+      GmailApp.moveThreadsToArchive(threads.slice(j, j+100));
+    }
+  }
+```
+
+_@TODO: Filter out starred threads, so this next part is unnecessary._
+
+**The gotcha:** That `AND (-is:starred)` at the end of the search string doesn't
+always work. Sometimes starred items are archived. But we have a way to fix that:
+
+``` js
+  var threads = GmailApp.search('-in:inbox is:starred');
+  for (k = 0; k < threads.length; k+=batchSize) {
+    GmailApp.moveThreadsToInbox(threads.slice(j, j+batchSize));
+  }
+```
 
 ### Step 3: Setup Triggers (like Cron for your inbox)
 
-{{ Trigger instruction }}
+Now we've got two functions:
+
+1. `autoTagMessage()` - given a thread, label it appropriately.
+2. `autoArchive()` - search for email that can be archived and do so.
+
+#### Trigger `autoTagMessage` hourly on new email only
+
+Google Apps Scripts can be triggered routinely, but unlike Outlook, there is no
+'run as a message is received' option. This can be emulated by:
+
+- having Gmail filters assign one label to every incoming email, and then
+- processing all messages in that label on a regular basis (5 minutes).
+
+I assign the "Prefilter" label to all incoming messages by matching against
+having an `@` in the `to` field. All other filters were exported and deleted.
+Using the Label settings, "Prefilter" can be hidden from your inbox view so you
+don't see it.
+
+![Prefilter](images/gmail-all-filter.png)
+
+Then, in a new function, I get those threads and tag them:
+
+``` js
+function batchIncoming() {
+  GmailApp.getUserLabelByName("Prefilter").getThreads().forEach(autoTagMessages);
+}
+```
+
+Now we have functions that can be run on a regular basis, so let's do so.
+Under the "Resources" menu, click "Current project's triggers" and add these:
+
+![Triggers](images/gscript-triggers.png)
+
+- `autoArchive()` can run hourly (or less frequently, honestly).
+- `batchIncoming()` must run very frequently. I chose 5 minutes instead of 1 so
+  that it wouldn't start again before the last execution has finished.
 
 ## Declare a Reset, then Profit
 
