@@ -29,7 +29,12 @@ My gripes with Gmail Filters:
 
 ## Ta-Daa! [Gmail can be scripted][GMAIL] with JavaScript!
 
-{{ Insert awesomesauce. }}
+Checkout [Google Apps Script][GSCRIPT] and create a new blank project.
+
+![Google Apps Script: New Project](images/gscript-new.png)
+
+This is just JavaScript, but it runs server-side within Google Apps and can be
+run on regular intervals or on specific triggers.
 
 ### Step 1: Migrate Filters to JavaScript for More Power
 
@@ -224,6 +229,8 @@ Under the "Resources" menu, click "Current project's triggers" and add these:
 - `batchIncoming()` must run very frequently. I chose 5 minutes instead of 1 so
   that it wouldn't start again before the last execution has finished.
 
+_@TODO: Still need a way to tag outgoing messages._
+
 ## Declare a Reset, then Profit
 
 Be sure to warn folks when you're about to purge a few thousand threads from your
@@ -231,6 +238,7 @@ inbox. Then sit back, _keep up with what you can_ using the auto-labeling help
 you've built, and let Google Apps Scripts help you.
 
 [GMAIL]: https://developers.google.com/apps-script/reference/gmail/
+[GSCRIPT]: http://www.google.com/script/start/
 [ADDLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel)
 [ADDSTAR]: https://developers.google.com/apps-script/reference/gmail/gmail-message#star()
 [GETLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)
