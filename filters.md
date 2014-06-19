@@ -63,7 +63,6 @@ function processIncoming(thread, index, threads)
 
 ```
   if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
-    msg.star();
     thread.addLabel( GmailApp.getUserLabelByName("Announcements") );
 
     if (subject.match(/(ooo|offline|unavailable)/i) === null) {
