@@ -27,7 +27,7 @@ My gripes with Gmail Filters:
 - Filters cannot be run on a delay
 - No regular expression matching
 
-## Ta-Daa! [Gmail can be scripted](https://developers.google.com/apps-script/reference/gmail/) with JavaScript!
+## Ta-Daa! [Gmail can be scripted][GMAIL] with JavaScript!
 
 {{ Insert awesomesauce. }}
 
@@ -50,13 +50,13 @@ variables and then move straight to categorizing:
 
 **Timely Messages** generally require direct action, quickly. They are added to
 the label '~/Announcements' by
-[`thread.addLabel()`](https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel))
+[`thread.addLabel()`][ADDLABEL]
 and also starred using
-[`message.star()`](https://developers.google.com/apps-script/reference/gmail/gmail-message#star()).
+[`message.star()`][ADDSTAR].
 
 _Gotchas:_
 - The `addLabel()` function requires a Label object, not a string. Such
-  an object can be obtaind using [`GmailApp.getUserLabelByName()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)).
+  an object can be obtaind using [`GmailApp.getUserLabelByName()`][GETLABEL].
 - Be sure to include 'parent/child' if your labels are hierarchical. (In this case,
   'Announcements' is a child of '~').
 - When using `string.match()`, be sure to add the `i` flag at the end of the
@@ -88,7 +88,7 @@ indicate that the sender will be unavailable, they are archived immediately:
   }
 ```
 
-_Regex on line 2 <a href="http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi">visualized</a>:_
+_Regex on line 2 [visualized][RXWFH]:_
 
 ![Whereabouts Regular Expressions](images/regex-whereabouts.png)
 
@@ -101,7 +101,7 @@ _Regex on line 2 <a href="http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5C
   }
 ```
 
-_Regex <a href="http://www.regexper.com/#%2F%5E((Updated%20)%3FInvitation%7CAccepted%7CCanceled(%20Event)%3F)%5C%3A%2F">visualized</a>:_
+_Regex [visualized][RXGCAL]:_
 
 ![Google Calendar Regular Expressions](images/regex-gcal.png)
 
@@ -114,11 +114,11 @@ those tags, but regex makes that easier:
   }
 ```
 
-_Regex <a href="http://www.regexper.com/#%2F%5C%5Bf(ull)%3F%5Cs%3Fp(late)%3F%5Cs%3F(l%7Cliving)%3F%5C%5D%2Fi">visualized</a>:_
+_Regex [visualized][RXFPL]:_
 
 ![FPL Regular Expressions](images/regex-fpl.png)
 
-This matches `[fpl]`, `'[full plate]`, `[full plate living]`, `[fullplateliving]`,
+This matches `[fpl]`, `[full plate]`, `[full plate living]`, `[fullplateliving]`,
 and various others, as well as any email sent to/from `@fullplateliving.org`.
 
 **In general,** the function contains three pieces:
@@ -137,7 +137,7 @@ My second function will archive threads that have dated out. Since the
 `autoTagMessages()` function has nearly everything categorized, we will base
 retention and expiration off of labels, thread ages, and whether or not
 the thread is read. This can be done by executing Gmail searches
-programmatically using [`GmailApp.search()`](https://developers.google.com/apps-script/reference/gmail/gmail-app#search(String))
+programmatically using [`GmailApp.search()`][SEARCH].
 
 Set up the searches as standard search queries:
 
@@ -151,7 +151,7 @@ Set up the searches as standard search queries:
     '(in:inbox label:~-announcements) AND ((is:read older_than:14d) OR (is:unread older_than:1m))',
 
     // Services Updates (timely; probably seen in-application)
-    '(in:inbox) AND (label:~-docs OR label:~-jira OR label:~-confluence OR label:~-notable OR label:~-harvest) AND ((is:read older_than:1d) OR (is:unread older_than:3d))',
+    '(in:inbox) AND (label:~-jira OR label:~-notable OR label:~-harvest) AND ((is:read older_than:1d) OR (is:unread older_than:3d))',
     'in:inbox label:~-hipchat older_than:1d',
 
     // Catch all, don't keep anything stale:
@@ -175,7 +175,7 @@ Then run the searches and, in batches of 100, archive the resulting threads:
 
 _@TODO: Filter out starred threads, so this next part is unnecessary._
 
-**The gotcha:** That `AND (-is:starred)` at the end of the search string doesn't
+_Gotchas:_ That `AND (-is:starred)` at the end of the search string doesn't
 always work. Sometimes starred items are archived. But we have a way to fix that:
 
 ``` js
@@ -229,3 +229,12 @@ Under the "Resources" menu, click "Current project's triggers" and add these:
 Be sure to warn folks when you're about to purge a few thousand threads from your
 inbox. Then sit back, _keep up with what you can_ using the auto-labeling help
 you've built, and let Google Apps Scripts help you.
+
+[GMAIL]: https://developers.google.com/apps-script/reference/gmail/
+[ADDLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel)
+[ADDSTAR]: https://developers.google.com/apps-script/reference/gmail/gmail-message#star()
+[GETLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)
+[RXWFH]: http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi
+[RXGCAL]: http://www.regexper.com/#%2F%5E((Updated%20)%3FInvitation%7CAccepted%7CCanceled(%20Event)%3F)%5C%3A%2F
+[RXFPL]: http://www.regexper.com/#%2F%5C%5Bf(ull)%3F%5Cs%3Fp(late)%3F%5Cs%3F(l%7Cliving)%3F%5C%5D%2Fi
+[SEARCH]: https://developers.google.com/apps-script/reference/gmail/gmail-app#search(String)
