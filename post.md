@@ -62,6 +62,7 @@ _Gotchas:_
 - When using `string.match()`, be sure to add the `i` flag at the end of the
   pattern to ignore case, since authors may be inconsistent with case.
 
+
 ``` js
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
@@ -86,6 +87,10 @@ indicate that the sender will be unavailable, they are archived immediately:
     }
   }
 ```
+
+_Regex on line 2 <a href="http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi">visualized</a>:_
+
+![Whereabouts Regular Expressions](regex-whereabouts.png?raw=true)
 
 ### Step 2: Script Email Expirations
 
