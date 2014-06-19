@@ -77,7 +77,7 @@ function autoTagMessages(thread, index, threads) {
   }
 
   // General Discussion
-  if (subject.match(/\[.*watercooler.*\]/i)) {
+  if (subject.match(/\[.*watercooler.*\]/i) || subject.match(/\[off topic\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Watercooler") );
   }
   if (subject.match(/\[(everyone|hr|announcement|people?ing)\]/i)) {
