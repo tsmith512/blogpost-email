@@ -237,7 +237,8 @@ otherwise).
 
 ``` js
   thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
-  if (thread.getLabels.length < 1) { return; }
+  // if (thread.getLabels.length < 1) { return; }
+  // @TODO: removeLabel() must be an async function, because this broke filtering
 
 ```
 
