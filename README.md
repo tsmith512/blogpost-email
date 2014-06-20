@@ -229,16 +229,15 @@ function batchIncoming() {
 }
 ```
 
-Next, amend `autoTagMessages()` to remove that label, and, if a thread has any
-other labels applied, abort. This will prevent re-labeling an entire thread for
+Next, amend `autoTagMessages()` to remove that label, and, if a thread has
+multiple messages, abort. This will prevent re-labeling an entire thread for
 any new messages in it (which would only be annoying in the case that a message
 is starred; for example, replies to a `[timely]` thread would be starred
 otherwise).
 
 ``` js
   thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
-  // if (thread.getLabels.length < 1) { return; }
-  // @TODO: removeLabel() must be an async function, because this broke filtering
+  if (thread.getMessageCount() > 1) { return; }
 
 ```
 
