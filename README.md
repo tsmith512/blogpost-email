@@ -1,5 +1,6 @@
 Originally written in June, 2014 by [Taylor Smith][TSMITH] for
-[FourWord][FOURWORD], the blog of [Four Kitchens][4K].
+[FourWord][FOURWORD], the blog of [Four Kitchens][4K]. See the full script
+on [GitHub][REPO].
 
 # Rescuing Myself from the Email Monster with JavaScript
 
@@ -280,6 +281,7 @@ I'm still working to:
 [TSMITH]: http://www.tsmithcreative.com/
 [FOURWORD]: http://fourword.fourkitchens.com/
 [4K]: http://fourkitchens.com/
+[REPO]: https://github.com/tsmith512/blogpost-email
 [GMAIL]: https://developers.google.com/apps-script/reference/gmail/
 [GSCRIPT]: http://www.google.com/script/start/
 [ADDLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel)
