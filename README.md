@@ -269,7 +269,7 @@ I'm still working to:
 1. Find an efficient way to filter threads with starred messages out of a
    `GmailApp.search()` result, so that I don't have to do that stupid "un-archive
    any starred threads" maneuver in `autoArchive()`. There is a method
-   [thread.hasStarredMessages()][HASSTARS], but using that would require iterating
+   [`thread.hasStarredMessages()`][HASSTARS], but using that would require iterating
    over each thread in the result-set, which seems expensive for an otherwise
    batched process.
 
