@@ -66,6 +66,9 @@ _Gotchas:_
   'Announcements' is a child of '~').
 - When using `string.match()`, be sure to add the `i` flag at the end of the
   pattern to ignore case, since authors may be inconsistent with case.
+- If you see an error like `Cannot retrieve (line X, file "Code")` where X is a
+  line containing a `getUserLabelByName` call, the most likely cause is that
+  [Gmail couldn't find that label][LABELERROR].
 
 
 ``` js
@@ -200,7 +203,7 @@ Now we've got two functions:
 #### Trigger `autoTagMessage` hourly on new email only
 
 Google Apps Scripts can be triggered routinely, but unlike Outlook, there is no
-'run as a message is received' option. This can be emulated by:
+'run as a message is received' option. [This can be emulated by][NEWEMAILMETHOD]:
 
 - having Gmail filters assign one label to every incoming email, and then
 - processing all messages in that label on a regular basis (5 minutes).
@@ -237,12 +240,21 @@ Be sure to warn folks when you're about to purge a few thousand threads from you
 inbox. Then sit back, _keep up with what you can_ using the auto-labeling help
 you've built, and let Google Apps Scripts help you.
 
+## Additional Reading
+
+- [Create time-based Gmail filters with Google Apps Script][TIMEBASEDFILTERS]
+- [Awesome Things You Can Do With Google Scripts][USEFULSCRIPTS]
+
 [GMAIL]: https://developers.google.com/apps-script/reference/gmail/
 [GSCRIPT]: http://www.google.com/script/start/
 [ADDLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel)
 [ADDSTAR]: https://developers.google.com/apps-script/reference/gmail/gmail-message#star()
 [GETLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-app#getUserLabelByName(String)
+[LABELERROR]: http://stackoverflow.com/questions/15688106/google-script-cannot-retrieve-line-9-file-code
 [RXWFH]: http://www.regexper.com/#%2F%5C%5B(whereabouts%7Cwf%5Cw*%7Cooo)%5C%5D%2Fi
 [RXGCAL]: http://www.regexper.com/#%2F%5E((Updated%20)%3FInvitation%7CAccepted%7CCanceled(%20Event)%3F)%5C%3A%2F
 [RXFPL]: http://www.regexper.com/#%2F%5C%5Bf(ull)%3F%5Cs%3Fp(late)%3F%5Cs%3F(l%7Cliving)%3F%5C%5D%2Fi
 [SEARCH]: https://developers.google.com/apps-script/reference/gmail/gmail-app#search(String)
+[NEWEMAILMETHOD]: http://stackoverflow.com/a/16932138
+[TIMEBASEDFILTERS]: http://www.johneday.com/422/time-based-gmail-filters-with-google-apps-script
+[USEFULSCRIPTS]: http://www.labnol.org/internet/google-scripts/28281/
