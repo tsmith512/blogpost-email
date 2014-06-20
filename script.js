@@ -50,6 +50,12 @@ function autoTagMessages(thread, index, threads) {
       from    = msg.getFrom(),
       any     = [to, from].join(', ');
 
+  // Remove the prefilter label, then check to see if there are any other
+  // labels applied to this thread. If so, it's just a new email on an existing
+  // thread and we can stop.
+  thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
+  if (thread.getLabels.length < 1) { return; }
+
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
     msg.star();
@@ -132,6 +138,4 @@ function autoTagMessages(thread, index, threads) {
   else if (any.indexOf('worldpulse.com') > -1 || subject.match(/\[w(orld)?\s?p(ulse)?(\/4K)?\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("#/World Pulse") );
   }
-
-  thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
 }

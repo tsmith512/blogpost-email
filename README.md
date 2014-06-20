@@ -181,8 +181,6 @@ Then run the searches and, in batches of 100, archive the resulting threads:
   }
 ```
 
-_@TODO: Filter out starred threads, so this next part is unnecessary._
-
 _Gotchas:_ That `AND (-is:starred)` at the end of the search string doesn't
 always work. Sometimes starred items are archived. But we have a way to fix that:
 
@@ -223,6 +221,18 @@ function batchIncoming() {
 }
 ```
 
+Next, amend `autoTagMessages()` to remove that label, and, if a thread has any
+other labels applied, abort. This will prevent re-labeling an entire thread for
+any new messages in it (which would only be annoying in the case that a message
+is starred, for example, replies to a `[timely]` thread would be starred
+otherwise).
+
+``` js
+  thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
+  if (thread.getLabels.length < 1) { return; }
+
+```
+
 Now we have functions that can be run on a regular basis, so let's do so.
 Under the "Resources" menu, click "Current project's triggers" and add these:
 
@@ -232,13 +242,26 @@ Under the "Resources" menu, click "Current project's triggers" and add these:
 - `batchIncoming()` must run very frequently. I chose 5 minutes instead of 1 so
   that it wouldn't start again before the last execution has finished.
 
-_@TODO: Still need a way to tag outgoing messages._
-
 ## Declare a Reset, then Profit
 
 Be sure to warn folks when you're about to purge a few thousand threads from your
 inbox. Then sit back, _keep up with what you can_ using the auto-labeling help
 you've built, and let Google Apps Scripts help you.
+
+## Next Steps
+
+I'm still working to:
+
+1. Tag outgoing messages; there are several ways to do this, but I'd like to find
+   an efficient way to do so. Adding an hourly function to select any messages in
+   the sent folder with only one message in the thread seems like a decent way to
+   do it, since my outgoing email volume is low.
+2. Find an efficient way to filter threads with starred messages out of a
+   `GmailApp.search()` result, so that I don't have to do that stupid "un-archive
+   any starred threads" maneuver in `autoArchive()`. There is a method
+   [thread.hasStarredMessages()][HASSTARS], but using that would require iterating
+   over each thread in the result-set, which seems expensive for an otherwise
+   batched process.
 
 ## Additional Reading
 
@@ -256,5 +279,6 @@ you've built, and let Google Apps Scripts help you.
 [RXFPL]: http://www.regexper.com/#%2F%5C%5Bf(ull)%3F%5Cs%3Fp(late)%3F%5Cs%3F(l%7Cliving)%3F%5C%5D%2Fi
 [SEARCH]: https://developers.google.com/apps-script/reference/gmail/gmail-app#search(String)
 [NEWEMAILMETHOD]: http://stackoverflow.com/a/16932138
+[HASSTARS]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#hasStarredMessages()
 [TIMEBASEDFILTERS]: http://www.johneday.com/422/time-based-gmail-filters-with-google-apps-script
 [USEFULSCRIPTS]: http://www.labnol.org/internet/google-scripts/28281/
