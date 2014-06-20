@@ -92,7 +92,7 @@ function autoTagMessages(thread, index, threads) {
   if (subject.match(/\[(Drupal(Camp|Con).*?|Event(s)?)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
   }
-  if (subject.match(/\[(content|blog|fourword|headless|drupal).*\]/i)) {
+  if (subject.match(/\[(content|blog|headless|drupal).*\]/i) || subject.match(/four ?word/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Initiatives") );
   }
 

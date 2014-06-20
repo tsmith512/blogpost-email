@@ -221,6 +221,10 @@ don't see it.
 
 ![Prefilter](images/gmail-all-filter.png)
 
+**Unexpected benefit:** I noticed that this "Prefilter" label is applied to all
+outbound email as well (perhaps because it matches only against the `to` field),
+allowing messages I send to be auto-labeled with no additional work!
+
 Then, in a new function, I get those threads and tag them:
 
 ``` js
@@ -262,11 +266,7 @@ you've built, and let Google Apps Scripts help you.
 
 I'm still working to:
 
-1. Tag outgoing messages; there are several ways to do this, but I'd like to find
-   an efficient way to do so. Adding an hourly function to select any messages in
-   the sent folder with only one message in the thread seems like a decent way to
-   do it, since my outgoing email volume is low.
-2. Find an efficient way to filter threads with starred messages out of a
+1. Find an efficient way to filter threads with starred messages out of a
    `GmailApp.search()` result, so that I don't have to do that stupid "un-archive
    any starred threads" maneuver in `autoArchive()`. There is a method
    [thread.hasStarredMessages()][HASSTARS], but using that would require iterating
