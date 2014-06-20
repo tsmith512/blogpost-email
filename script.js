@@ -3,7 +3,7 @@ function autoArchive() {
   // will not accept more than 100 threads at a time.
   var batchSize = 100;
 
-  // We'll archive anything matching these searches
+  // Archive anything matching these searches
   var searches = [
     // General Stuff:
     'in:inbox label:~-whereabouts older_than:1d',
@@ -30,7 +30,7 @@ function autoArchive() {
   }
 
   // Gmail claims to support -is:starred, but it doesn't work. Sometimes
-  // (but not always) the "AND (-is:starred)" we included above still includes
+  // (but not always) the "AND (-is:starred)" I included above still includes
   // starred conversations. Don't want to auto-archive those. (Or restore any
   // I accidentally archived...)
   var threads = GmailApp.search('-in:inbox is:starred');
@@ -52,7 +52,7 @@ function autoTagMessages(thread, index, threads) {
 
   // Remove the prefilter label, then check to see if there are any other
   // labels applied to this thread. If so, it's just a new email on an existing
-  // thread and we can stop.
+  // thread and this function can stop.
   thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
   if (thread.getLabels.length < 1) { return; }
 
@@ -120,7 +120,7 @@ function autoTagMessages(thread, index, threads) {
   }
 
   // Client Discussions
-  if (any.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor|soc)\]/i)) {
+  if (any.indexOf('stanford.edu') > -1 || subject.match(/\[(stanford|sdor|dor(esearch)?|soc)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("#/Stanford") );
   }
   else if (any.indexOf('texasexes.org') > -1 || subject.match(/\[(texas ?exes|txex)\]/i)) {

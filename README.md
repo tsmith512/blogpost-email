@@ -34,7 +34,8 @@ Checkout [Google Apps Script][GSCRIPT] and create a new blank project.
 ![Google Apps Script: New Project](images/gscript-new.png)
 
 This is just JavaScript, but it runs server-side within Google Apps and can be
-run on regular intervals or on specific triggers.
+run on regular intervals or on specific triggers. You do not have to be logged
+in with a window open to make this work!
 
 ### Step 1: Migrate Filters to JavaScript for More Power
 
@@ -50,20 +51,18 @@ function autoTagMessages(thread, index, threads) {
       any     = [to, from].join(', ');
 ```
 
-A new function is created for tagging messages. We compile a list of useful
+A new function is created for tagging messages. I compile a list of useful
 variables and then move straight to categorizing:
 
 **Timely Messages** generally require direct action, quickly. They are added to
-the label '~/Announcements' by
-[`thread.addLabel()`][ADDLABEL]
-and also starred using
-[`message.star()`][ADDSTAR].
+the label '~/Announcements' by [`thread.addLabel()`][ADDLABEL] and also starred
+using [`message.star()`][ADDSTAR].
 
 _Gotchas:_
 - The `addLabel()` function requires a Label object, not a string. Such
   an object can be obtaind using [`GmailApp.getUserLabelByName()`][GETLABEL].
-- Be sure to include 'parent/child' if your labels are hierarchical. (In this case,
-  'Announcements' is a child of '~').
+  - Be sure to include 'parent/child' if your labels are hierarchical. (In this
+    case, 'Announcements' is a child of '~').
 - When using `string.match()`, be sure to add the `i` flag at the end of the
   pattern to ignore case, since authors may be inconsistent with case.
 - If you see an error like `Cannot retrieve (line X, file "Code")` where X is a
@@ -131,18 +130,20 @@ and various others, as well as any email sent to/from `@fullplateliving.org`.
 
 **In general,** the function contains three pieces:
 
-- `If` statements testing timeliness or general discussion
+- `If` statements testing timeliness or general discussion topics
 - `If/else` statements testing for one of any application notification (Google
-  Calendar, GitHub, JIRA, Notable, etc.)
-- `If/else` statements testing for one of any client name
+  Calendar, GitHub, JIRA, Notable, etc.) since a thread won't be from multiple
+- `If/else` statements testing for one of any client name, since a thread is
+  unlikely to pertain to multiple clients directly, although I may change this.
 
 This allows a thread to end up with multiple labels at the expense of running a
-little slower, but we handle that when we set up the triggers (Step 3).
+little slower, but the load is reduced by being conservative with the triggers
+(Step 3).
 
 ### Step 2: Script Email Expirations
 
 My second function will archive threads that have dated out. Since the
-`autoTagMessages()` function has nearly everything categorized, we will base
+`autoTagMessages()` function has nearly everything categorized, I'll base
 retention and expiration off of labels, thread ages, and whether or not
 the thread is read. This can be done by executing Gmail searches
 programmatically using [`GmailApp.search()`][SEARCH].
@@ -150,7 +151,7 @@ programmatically using [`GmailApp.search()`][SEARCH].
 Set up the searches as standard search queries:
 
 ``` js
-  // We'll archive anything matching these searches
+  // Archive anything matching these searches
   var searches = [
     // General Stuff:
     'in:inbox label:~-whereabouts older_than:1d', // Highly timely
@@ -182,7 +183,8 @@ Then run the searches and, in batches of 100, archive the resulting threads:
 ```
 
 _Gotchas:_ That `AND (-is:starred)` at the end of the search string doesn't
-always work. Sometimes starred items are archived. But we have a way to fix that:
+always work. Sometimes threads with starred messages are archived anyway. But
+there is a way to fix that:
 
 ``` js
   var threads = GmailApp.search('-in:inbox is:starred');
@@ -191,9 +193,11 @@ always work. Sometimes starred items are archived. But we have a way to fix that
   }
 ```
 
+_(I didn't say it was a graceful way...)_
+
 ### Step 3: Setup Triggers (like Cron for your inbox)
 
-Now we've got two functions:
+Now I have two functions:
 
 1. `autoTagMessage()` - given a thread, label it appropriately.
 2. `autoArchive()` - search for email that can be archived and do so.
@@ -224,7 +228,7 @@ function batchIncoming() {
 Next, amend `autoTagMessages()` to remove that label, and, if a thread has any
 other labels applied, abort. This will prevent re-labeling an entire thread for
 any new messages in it (which would only be annoying in the case that a message
-is starred, for example, replies to a `[timely]` thread would be starred
+is starred; for example, replies to a `[timely]` thread would be starred
 otherwise).
 
 ``` js
@@ -233,7 +237,7 @@ otherwise).
 
 ```
 
-Now we have functions that can be run on a regular basis, so let's do so.
+Now I have two functions that can be run on a regular basis, so let's do so.
 Under the "Resources" menu, click "Current project's triggers" and add these:
 
 ![Triggers](images/gscript-triggers.png)
@@ -241,6 +245,8 @@ Under the "Resources" menu, click "Current project's triggers" and add these:
 - `autoArchive()` can run hourly (or less frequently, honestly).
 - `batchIncoming()` must run very frequently. I chose 5 minutes instead of 1 so
   that it wouldn't start again before the last execution has finished.
+  - Google Apps Scripts will timeout and abort at five minutes, although I
+    haven't hit that limitation.
 
 ## Declare a Reset, then Profit
 
