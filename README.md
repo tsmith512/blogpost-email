@@ -1,6 +1,9 @@
+Originally written in June, 2014 by [Taylor Smith][TSMITH] for
+[FourWord][FOURWORD], the blog of [Four Kitchens][4K].
+
 # Rescuing Myself from the Email Monster with JavaScript
 
-We here at [Four Kitchens](http://www.fourkitchens.com) do love us some email.
+We here at [Four Kitchens][4K] do love us some email.
 Last week, I self-awarded a prize for having achieved 4,000 unread items in my
 inbox, with another 3,000 read items sitting in my inbox for no reason. I could
 keep going for the record, but I thought I'd attempt to use nerdiness to take
@@ -15,8 +18,8 @@ I came to Gmail from Exchange; Filters have always seemed less powerful than Rul
 My gripes with Gmail Filters:
 
 - Search is limited, seemingly, to word and number characters; special characters
-  have no effect in searches, so I can't isolate "**\[** category **\]**" strings we
-  use in subject lines.
+  have no effect in searches, so I can't isolate "**\[** category **\]**" strings
+  we use in subject lines.
 - Complex groups of boolean logic have a tendency to produce imprecise results
   and there's no way to have "additional criteria" (even if multiple fields are
   used in the advanced search/filter builder, they're flatted into a single query)
@@ -274,6 +277,9 @@ I'm still working to:
 - [Create time-based Gmail filters with Google Apps Script][TIMEBASEDFILTERS]
 - [Awesome Things You Can Do With Google Scripts][USEFULSCRIPTS]
 
+[TSMITH]: http://www.tsmithcreative.com/
+[FOURWORD]: http://fourword.fourkitchens.com/
+[4K]: http://fourkitchens.com/
 [GMAIL]: https://developers.google.com/apps-script/reference/gmail/
 [GSCRIPT]: http://www.google.com/script/start/
 [ADDLABEL]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#addLabel(GmailLabel)
