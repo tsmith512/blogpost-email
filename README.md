@@ -1,8 +1,6 @@
-Originally written in June, 2014 by [Taylor Smith][TSMITH] for
-[FourWord][FOURWORD], the blog of [Four Kitchens][4K]. See the full script
-on [GitHub][REPO].
-
-# Rescuing Myself from the Email Monster with JavaScript
+<div class="callout">
+Originally written for <a href="http://fourword.fourkitchens.com/">FourWord</a>, the blog of <a href="http://www.fourkitchens.com">Four Kitchens</a>. See the full script on <a href="https://github.com/tsmith512/blogpost-email">GitHub</a>.
+</div>
 
 We here at [Four Kitchens][4K] do love us some email.
 Last week, I self-awarded a prize for having achieved 4,000 unread items in my
@@ -35,7 +33,7 @@ My gripes with Gmail Filters:
 
 Checkout [Google Apps Script][GSCRIPT] and create a new blank project.
 
-![Google Apps Script: New Project](images/gscript-new.png)
+![Google Apps Script: New Project][GASNP]
 
 This is just JavaScript, but it runs server-side within Google Apps and can be
 run on regular intervals or on specific triggers. You do not have to be logged
@@ -46,14 +44,14 @@ in with a window open to make this work!
 **Goal:** Label _everything_, both incoming and outgoing. Additionally, some theads
 are starred, marked as `/(un)?(important|read)/`, or immediately auto-archived.
 
-``` js
+<javascript>
 function autoTagMessages(thread, index, threads) {
   var msg     = thread.getMessages()[0],
       subject = thread.getFirstMessageSubject(),
       to      = [msg.getTo(), msg.getCc()].join(', '),
       from    = msg.getFrom(),
       any     = [to, from].join(', ');
-```
+</javascript>
 
 A new function is created for tagging messages. I compile a list of useful
 variables and then move straight to categorizing:
@@ -74,19 +72,19 @@ _Gotchas:_
   [Gmail couldn't find that label][LABELERROR].
 
 
-``` js
+<javascript>
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
     msg.star();
     thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
   }
-```
+</javascript>
 
 **Whereabouts** emails are generally uninteresting since I work remotely most of
 the time. They're all flagged as '~/Whereabouts' and, if they don't appear to
 indicate that the sender will be unavailable, they are archived immediately:
 
-``` js
+<javascript>
   // Whereabouts Info (except stuff I don't care about)
   if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
@@ -97,37 +95,37 @@ indicate that the sender will be unavailable, they are archived immediately:
       thread.moveToArchive();
     }
   }
-```
+</javascript>
 
 _Regex on line 2 [visualized][RXWFH]:_
 
-![Whereabouts Regular Expressions](images/regex-whereabouts.png)
+![Whereabouts Regular Expressions][WFHRXV]
 
 **Google Calendar** emails can be identified by what the subject line starts with:
 
-``` js
+<javascript>
   // Google Calendar Stuff
   if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Calendaring") ).markUnimportant();
   }
-```
+</javascript>
 
 _Regex [visualized][RXGCAL]:_
 
-![Google Calendar Regular Expressions](images/regex-gcal.png)
+![Google Calendar Regular Expressions][GCARXV]
 
 **Client** emails get sorted as well. We're a little lax in the formatting of
 those tags, but regex makes that easier:
 
-``` js
+<javascript>
   else if (any.indexOf('fullplateliving.org') > -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("#/Full Plate Living") );
   }
-```
+</javascript>
 
 _Regex [visualized][RXFPL]:_
 
-![FPL Regular Expressions](images/regex-fpl.png)
+![FPL Regular Expressions][FPLRXV]
 
 This matches `[fpl]`, `[full plate]`, `[full plate living]`, `[fullplateliving]`,
 and various others, as well as any email sent to/from `@fullplateliving.org`.
@@ -154,7 +152,7 @@ programmatically using [`GmailApp.search()`][SEARCH].
 
 Set up the searches as standard search queries:
 
-``` js
+<javascript>
   // Archive anything matching these searches
   var searches = [
     // General Stuff:
@@ -170,11 +168,11 @@ Set up the searches as standard search queries:
     // Catch all, don't keep anything stale:
     'in:inbox is:read older_than:2m'
   ];
-```
+</javascript>
 
 Then run the searches and, in batches of 100, archive the resulting threads:
 
-``` js
+<javascript>
   for (i = 0; i < searches.length; i++) {
     // Run the search, EXLUDING anything that is starred:
     var threads = GmailApp.search(searches[i] + ' AND (-is:starred)');
@@ -184,18 +182,18 @@ Then run the searches and, in batches of 100, archive the resulting threads:
       GmailApp.moveThreadsToArchive(threads.slice(j, j+100));
     }
   }
-```
+</javascript>
 
 _Gotchas:_ That `AND (-is:starred)` at the end of the search string doesn't
 always work. Sometimes threads with starred messages are archived anyway. But
 there is a way to fix that:
 
-``` js
+<javascript>
   var threads = GmailApp.search('-in:inbox is:starred');
   for (k = 0; k < threads.length; k+=batchSize) {
     GmailApp.moveThreadsToInbox(threads.slice(j, j+batchSize));
   }
-```
+</javascript>
 
 _(I didn't say it was a graceful way...)_
 
@@ -219,7 +217,7 @@ having an `@` in the `to` field. All other filters were exported and deleted.
 Using the Label settings, "Prefilter" can be hidden from your inbox view so you
 don't see it.
 
-![Prefilter](images/gmail-all-filter.png)
+![Prefilter][GCAF]
 
 **Unexpected benefit:** I noticed that this "Prefilter" label is applied to all
 outbound email as well (perhaps because it matches only against the `to` field),
@@ -227,11 +225,11 @@ allowing messages I send to be auto-labeled with no additional work!
 
 Then, in a new function, I get those threads and tag them:
 
-``` js
+<javascript>
 function batchIncoming() {
   GmailApp.getUserLabelByName("Prefilter").getThreads().forEach(autoTagMessages);
 }
-```
+</javascript>
 
 Next, amend `autoTagMessages()` to remove that label, and, if a thread has
 multiple messages, abort. This will prevent re-labeling an entire thread for
@@ -239,16 +237,15 @@ any new messages in it (which would only be annoying in the case that a message
 is starred; for example, replies to a `[timely]` thread would be starred
 otherwise).
 
-``` js
+<javascript>
   thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
   if (thread.getMessageCount() > 1) { return; }
-
-```
+</javascript>
 
 Now I have two functions that can be run on a regular basis, so let's do so.
 Under the "Resources" menu, click "Current project's triggers" and add these:
 
-![Triggers](images/gscript-triggers.png)
+![Triggers][GAST]
 
 - `autoArchive()` can run hourly (or less frequently, honestly).
 - `batchIncoming()` must run very frequently. I chose 5 minutes instead of 1 so
@@ -296,3 +293,11 @@ I'm still working to:
 [HASSTARS]: https://developers.google.com/apps-script/reference/gmail/gmail-thread#hasStarredMessages()
 [TIMEBASEDFILTERS]: http://www.johneday.com/422/time-based-gmail-filters-with-google-apps-script
 [USEFULSCRIPTS]: http://www.labnol.org/internet/google-scripts/28281/
+
+<!-- Images -->
+[GASNP]: /sites/default/files/articles/gscript-new.png
+[WFHRXV]: /sites/default/files/articles/regex-whereabouts.png
+[GCARXV]: /sites/default/files/articles/regex-gcal.png
+[FPLRXV]: /sites/default/files/articles/regex-fpl.png
+[GCAF]: /sites/default/files/articles/gmail-all-filter.png
+[GAST]: /sites/default/files/articles/gscript-triggers.png
