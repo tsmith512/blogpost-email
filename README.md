@@ -29,7 +29,7 @@ This is just JavaScript, but it runs server-side within Google Apps and can be r
 
 **Goal:** Label _everything_, both incoming and outgoing. Additionally, some theads are starred, marked as <code>/(un)?(important|read)/</code>, or immediately auto-archived.
 
-<pre><code class="language-js">
+<pre><code class="language-javascript">
 function autoTagMessages(thread, index, threads) {
   var msg     = thread.getMessages()[0],
       subject = thread.getFirstMessageSubject(),
@@ -48,27 +48,27 @@ _Gotchas:_
 - When using <code>string.match()</code>, be sure to add the <code>i</code> flag at the end of the pattern to ignore case, since authors may be inconsistent with case.
 - If you see an error like <code>Cannot retrieve (line X, file "Code")</code> where X is a line containing a <code>getUserLabelByName</code> call, the most likely cause is that [Gmail couldn't find that label][LABELERROR].
 
-<pre><code class="language-js">
-  // Immediate To-Do Items
-  if (subject.match(/\[timely\]/i) !== null) {
-    msg.star();
-    thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
-  }
+<pre><code class="language-javascript">
+// Immediate To-Do Items
+if (subject.match(/\[timely\]/i) !== null) {
+  msg.star();
+  thread.addLabel( GmailApp.getUserLabelByName("~/Announcements") );
+}
 </code></pre>
 
 **Whereabouts** emails are generally uninteresting since I work remotely most of the time. They're all flagged as '~/Whereabouts' and, if they don't appear to indicate that the sender will be unavailable, they are archived immediately:
 
-<pre><code class="language-js">
-  // Whereabouts Info (except stuff I don't care about)
-  if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
-    thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
+<pre><code class="language-javascript">
+// Whereabouts Info (except stuff I don't care about)
+if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
+  thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
 
-    // Most of this is just "I'm working at home today", but this may be
-    // a poorly-imagined idea... We'll see...
-    if (subject.match(/(ooo|offline|unavailable|errands)/i) === null) {
-      thread.moveToArchive();
-    }
+  // Most of this is just "I'm working at home today", but this may be
+  // a poorly-imagined idea... We'll see...
+  if (subject.match(/(ooo|offline|unavailable|errands)/i) === null) {
+    thread.moveToArchive();
   }
+}
 </code></pre>
 
 _Regex on line 2 [visualized][RXWFH]:_
@@ -77,11 +77,11 @@ _Regex on line 2 [visualized][RXWFH]:_
 
 **Google Calendar** emails can be identified by what the subject line starts with:
 
-<pre><code class="language-js">
-  // Google Calendar Stuff
-  if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
-    thread.addLabel( GmailApp.getUserLabelByName("~/Calendaring") ).markUnimportant();
-  }
+<pre><code class="language-javascript">
+// Google Calendar Stuff
+if (subject.match(/^((Updated )?Invitation|Accepted|Canceled( Event)?)\:/) !== null) {
+  thread.addLabel( GmailApp.getUserLabelByName("~/Calendaring") ).markUnimportant();
+}
 </code></pre>
 
 _Regex [visualized][RXGCAL]:_
@@ -90,10 +90,10 @@ _Regex [visualized][RXGCAL]:_
 
 **Client** emails get sorted as well. We're a little lax in the formatting of those tags, but regex makes that easier:
 
-<pre><code class="language-js">
-  else if (any.indexOf('fullplateliving.org') &gt; -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
-    thread.addLabel( GmailApp.getUserLabelByName("#/Full Plate Living") );
-  }
+<pre><code class="language-javascript">
+else if (any.indexOf('fullplateliving.org') &gt; -1 || subject.match(/\[f(ull)?\s?p(late)?\s?(l|living)?\]/i)) {
+  thread.addLabel( GmailApp.getUserLabelByName("#/Full Plate Living") );
+}
 </code></pre>
 
 _Regex [visualized][RXFPL]:_
@@ -116,45 +116,45 @@ My second function will archive threads that have dated out. Since the <code>aut
 
 Set up the searches as standard search queries:
 
-<pre><code class="language-js">
-  // Archive anything matching these searches
-  var searches = [
-    // General Stuff:
-    'in:inbox label:~-whereabouts older_than:1d', // Highly timely
-    'in:inbox label:~-calendaring older_than:3d', // Shows in Google Calendar
-    '(in:inbox label:~-watercooler) AND ((is:read older_than:7d) OR (is:unread older_than:21d))',
-    '(in:inbox label:~-announcements) AND ((is:read older_than:14d) OR (is:unread older_than:1m))',
+<pre><code class="language-javascript">
+// Archive anything matching these searches
+var searches = [
+  // General Stuff:
+  'in:inbox label:~-whereabouts older_than:1d', // Highly timely
+  'in:inbox label:~-calendaring older_than:3d', // Shows in Google Calendar
+  '(in:inbox label:~-watercooler) AND ((is:read older_than:7d) OR (is:unread older_than:21d))',
+  '(in:inbox label:~-announcements) AND ((is:read older_than:14d) OR (is:unread older_than:1m))',
 
-    // Services Updates (timely; probably seen in-application)
-    '(in:inbox) AND (label:~-jira OR label:~-notable OR label:~-harvest) AND ((is:read older_than:1d) OR (is:unread older_than:3d))',
-    'in:inbox label:~-hipchat older_than:1d',
+  // Services Updates (timely; probably seen in-application)
+  '(in:inbox) AND (label:~-jira OR label:~-notable OR label:~-harvest) AND ((is:read older_than:1d) OR (is:unread older_than:3d))',
+  'in:inbox label:~-hipchat older_than:1d',
 
-    // Catch all, don't keep anything stale:
-    'in:inbox is:read older_than:2m'
-  ];
+  // Catch all, don't keep anything stale:
+  'in:inbox is:read older_than:2m'
+];
 </code></pre>
 
-Then run the searches and, in batches of 100, archive the resulting threads:
+Then run the searches and, in batches of 100 (`batchSize`), archive the resulting threads:
 
-<pre><code class="language-js">
-  for (i = 0; i &lt; searches.length; i++) {
-    // Run the search, EXLUDING anything that is starred:
-    var threads = GmailApp.search(searches[i] + ' AND (-is:starred)');
+<pre><code class="language-javascript">
+for (i = 0; i &lt; searches.length; i++) {
+  // Run the search, EXLUDING anything that is starred:
+  var threads = GmailApp.search(searches[i] + ' AND (-is:starred)');
 
-    // Batch through the results to archive:
-    for (j = 0; j &lt; threads.length; j+=batchSize) {
-      GmailApp.moveThreadsToArchive(threads.slice(j, j+100));
-    }
+  // Batch through the results to archive:
+  for (j = 0; j &lt; threads.length; j+=batchSize) {
+    GmailApp.moveThreadsToArchive(threads.slice(j, j+batchSize));
   }
+}
 </code></pre>
 
 _Gotchas:_ That <code>AND (-is:starred)</code> at the end of the search string doesn't always work. Sometimes threads with starred messages are archived anyway. But there is a way to fix that:
 
-<pre><code class="language-js">
-  var threads = GmailApp.search('-in:inbox is:starred');
-  for (k = 0; k &lt; threads.length; k+=batchSize) {
-    GmailApp.moveThreadsToInbox(threads.slice(j, j+batchSize));
-  }
+<pre><code class="language-javascript">
+var threads = GmailApp.search('-in:inbox is:starred');
+for (k = 0; k &lt; threads.length; k+=batchSize) {
+  GmailApp.moveThreadsToInbox(threads.slice(j, j+batchSize));
+}
 </code></pre>
 
 _(I didn't say it was a graceful way... Investigating better options...)_
@@ -181,7 +181,7 @@ I assign the "Prefilter" label to all incoming messages by matching against havi
 
 Then, in a new function, I get those threads and tag them:
 
-<pre><code class="language-js">
+<pre><code class="language-javascript">
 function batchIncoming() {
   GmailApp.getUserLabelByName("Prefilter").getThreads().forEach(autoTagMessages);
 }
@@ -189,9 +189,9 @@ function batchIncoming() {
 
 Next, amend <code>autoTagMessages()</code> to remove that label, and, if a thread has multiple messages, abort. This will prevent re-labeling an entire thread for any new messages in it (which would only be annoying in the case that a message is starred; for example, replies to a <code>[timely]</code> thread would be starred otherwise).
 
-<pre><code class="language-js">
-  thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
-  if (thread.getMessageCount() &gt; 1) { return; }
+<pre><code class="language-javascript">
+thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
+if (thread.getMessageCount() &gt; 1) { return; }
 </code></pre>
 
 Now I have two functions that can be run on a regular basis, so let's do so. Under the "Resources" menu, click "Current project's triggers" and add these:
