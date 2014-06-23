@@ -172,7 +172,7 @@ Set up the searches as standard search queries:
   ];
 ```
 
-Then run the searches and, in batches of 100, archive the resulting threads:
+Then run the searches and, in batches of 100 (`batchSize`), archive the resulting threads:
 
 ``` js
   for (i = 0; i < searches.length; i++) {
@@ -181,7 +181,7 @@ Then run the searches and, in batches of 100, archive the resulting threads:
 
     // Batch through the results to archive:
     for (j = 0; j < threads.length; j+=batchSize) {
-      GmailApp.moveThreadsToArchive(threads.slice(j, j+100));
+      GmailApp.moveThreadsToArchive(threads.slice(j, j+batchSize));
     }
   }
 ```
