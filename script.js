@@ -83,7 +83,7 @@ function autoTagMessages(thread, index, threads) {
   }
 
   // General Discussion
-  if (subject.match(/\[.*watercooler.*\]/i) || subject.match(/\[off topic\]/i)) {
+  if (subject.match(/\[.*watercooler.*\]/i) || subject.match(/\[(off topic|misc|games)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Watercooler") );
   }
   if (subject.match(/\[(everyone|hr|announcement|people?ing)\]/i)) {
@@ -137,5 +137,8 @@ function autoTagMessages(thread, index, threads) {
   }
   else if (any.indexOf('worldpulse.com') > -1 || subject.match(/\[w(orld)?\s?p(ulse)?(\/4K)?\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("#/World Pulse") );
+  }
+  else if (any.indexOf('timeinc.net') > -1) {
+    thread.addLabel( GmailApp.getUserLabelByName("#/Time Inc") );
   }
 }
