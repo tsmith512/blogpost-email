@@ -54,7 +54,7 @@ function autoTagMessages(thread, index, threads) {
   // messages in this thread. If so, it's just a new email on an existing
   // thread and we can stop.
   thread.removeLabel( GmailApp.getUserLabelByName("Prefilter") );
-  if (thread.getMessageCount() > 1) { return; }
+  // if (thread.getMessageCount() > 1) { return; }
 
   // Immediate To-Do Items
   if (subject.match(/\[timely\]/i) !== null) {
@@ -63,7 +63,7 @@ function autoTagMessages(thread, index, threads) {
   }
 
   // Whereabouts Info (except stuff I don't care about)
-  if (subject.match(/\[(whereabouts|wf\w*|ooo)\]/i) !== null) {
+  if (subject.match(/(whereabouts|\[.*wf.*\]|ooo|offline|vacation)/i) !== null) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Whereabouts") );
 
     // Most of this is just "I'm working at home today", but this may be
@@ -100,7 +100,7 @@ function autoTagMessages(thread, index, threads) {
   if (from == 'confluence@fourkitchens.atlassian.net') {
     thread.addLabel( GmailApp.getUserLabelByName("~/Confluence") );
   }
-  else if (from == 'jira@fourkitchens.atlassian.net') {
+  else if (from == 'jira@fourkitchens.atlassian.net' || subject.match(/\[JIRA\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/JIRA") );
   }
   else if (from.indexOf('notableapp.com') > -1) {
@@ -112,7 +112,7 @@ function autoTagMessages(thread, index, threads) {
   else if (from.indexOf('harvestapp.com') > -1 || subject.match(/\[(harvest|time( tracking)?|hours)\]/i)) {
     thread.addLabel( GmailApp.getUserLabelByName("~/Harvest") ).markUnimportant();
   }
-  else if (from == 'donotreply@hipchat.com') {
+  else if (from.indexOf('hipchat.com') > -1) {
     thread.addLabel( GmailApp.getUserLabelByName("~/HipChat") ).markUnimportant();
   }
   else if (from.match(/(noreply|notifications).*\@github\.com/i)) {
